@@ -1,0 +1,123 @@
+<?php
+
+include "db.php";
+include "auth.php";
+
+requireRole('admin');
+?>
+
+<?php
+$userId = $_SESSION['user_id'];
+$result = $conn->query("SELECT nip, fullname, profile_pic FROM users WHERE id=$userId");
+$user = $result->fetch_assoc();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+
+  <title>Super Admin Dashboard</title>
+  <link href="dashboard_super_admin.css" rel="stylesheet" type="text/css">
+  <meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
+  <link rel="shortcut icon" href="images/button/logo2.png">
+
+</head>
+<body>
+  <div class="header">
+
+            <div class="logo">
+            	<a href="../index.php" target="_blank"><img src="../icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>
+            </div>
+
+            <div class="navbar">
+              <a href="logout.php" class="logout" style="text-decoration: none;">Logout  <img src="../icon/button/exit.png" width="30px" style="vertical-align:middle;"></a>
+            </div> 
+  </div>
+  <div class="roleHeader">
+    <h1>👑 Super Admin Dashboard 👑</h1>
+  </div>
+
+<div class="content">
+
+    <div class="leftSide">
+
+      <div class="userBio">
+        <!--<h2 style="font-family: FreeHand;">Selamat Datang,</h2>-->
+        <div class="greetings">
+          <?php
+            date_default_timezone_set('Asia/Jakarta');
+            $a = date ("H");
+
+            if (($a >=4) && ($a<=10))
+            {
+              echo "Selamat Pagi!";
+            }
+            elseif (($a>=11) && ($a<=15))
+            {
+              echo "Selamat Siang!";
+            }
+            elseif (($a>=16) && ($a<=18))
+            {
+              echo "Selamat Sore!";
+            }
+            else
+            {
+              echo "Selamat Malam!";
+            }
+          ?>
+        </div>
+        <div class="namaProfil">
+          <br><?php echo $user['fullname']; ?>
+        </div>
+        <div class="nipProfil">
+          NIP: <?php echo $user['nip']; ?>
+        </div>
+        
+      </div>
+
+      <div class="fotoProfil">
+        <?php if ($user['profile_pic']): ?>
+        <img src="uploads/profile_pics/<?php echo $user['profile_pic']; ?>" alt="Profile Picture">
+        <?php else: ?>
+        <img src="uploads/profile_pics/default.png" alt="Default Profile">
+        <?php endif; ?>
+      </div>
+
+    </div>
+  
+  <div class="rightSide">
+
+    <div class="flex-item-main">
+      <p><a href="cms_admin_authority/add_user.php">
+        <img src="../icon/button/add_user.png" width="100"></a><br>ADD USER</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="cms_admin_authority/dashboard_admin_cms.php">
+        <img src="../icon/button/profil.png" width="100"></a><br>CMS USER</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="pengumuman/dashboard_pengumuman.php">
+        <img src="../icon/button/announcement.png" width="100"></a><br>PENGUMUMAN</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="berita/admin_news.php">
+        <img src="../icon/button/news.png" width="100"></a><br>BERITA</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="infoGrafis/admin_infoGrafis.php">
+        <img src="../icon/button/graphics.png" width="100"></a><br>INFO GRAFIS</p>
+    </div>
+
+</div>
+
+  <div class="footer">
+    <p>Copyright &copy; 2025. Tim PUSDATIN - BKPSDMD Kabupaten Merangin.</p>
+  </div>
+
+</body>
+</html>

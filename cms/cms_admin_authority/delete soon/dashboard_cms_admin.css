@@ -1,0 +1,218 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+   font-family: Trebuchet;
+   src: url("../file/Font/Trebuchet.ttf");
+}
+@font-face {
+   font-family:Bahnschrift;
+   src: url("../file/Font/Bahnschrift.ttf");
+}
+@font-face {
+   font-family: BebasNeue;
+   src: url("../file/Font/BebasNeue.otf");
+}
+@font-face {
+   font-family: Raleway-Light;
+   src: url("../file/Font/Raleway-Light.ttf");
+}
+@font-face {
+   font-family: Raleway-Medium;
+   src: url("../file/Font/Raleway-Medium.ttf");
+}
+@font-face {
+   font-family: FreeHand;
+   src: url("../file/Font/FreeHand.ttf");
+}
+@font-face {
+   font-family: SegoeUI;
+   src: url("../file/Font/segoeui.ttf");
+}
+body {
+	margin: 0;
+    font-family: Arial; 
+    background:#f4f6f9; 
+}
+.header
+{
+	position: fixed;
+	top: 0px;
+	width:100%;
+	height: 65px;
+	background-color: #0077b6;
+}
+.logo
+{
+	position:fixed;
+	padding: 10px;
+}
+.navbar
+{
+    float: right;
+    margin-right: 10px;
+}
+.navbar a {
+    font-size: 20px;
+	font-family:Bahnschrift;
+    color: white;
+}
+.navbar a:hover {
+    color: #dcdcdd;
+}
+.roleHeader h1 {
+    margin: auto;
+    margin-top: 70px;
+    padding: 20px;
+    text-align:center;
+    font-family: Bahnschrift;
+}
+
+@media screen and (max-width: 600px) {
+  .content {   
+    flex-direction: column;
+  }
+}
+
+.content {  
+  display: flex;
+  margin-bottom: 70px;
+}
+.leftSide {
+    flex: 20%;
+    padding: 20px;
+    background-color: #ffffff;
+}
+.userBio {
+    text-align:center;
+    font-family:sans-serif;
+    margin-bottom: 20px;
+    color: #0077b6;
+}
+.fotoProfil {
+    display: flex;
+    justify-content: center;
+}
+.fotoProfil img{
+    width: 200px; 
+    height: 200px; 
+    border-radius: 8px;
+    box-shadow: 0px 0px 5px #818181;
+}
+
+* {
+    box-sizing: border-box;
+}
+@media screen and (max-width: 600px) {
+  .rightSide {   
+    flex-direction: column;
+  }
+}
+
+.rightSide {
+    background-color: #dcdcdd;
+    display: flex;
+    flex: 80%;
+    
+    flex-wrap: wrap;
+    align-content: space-evenly;
+
+    padding: 20px;
+    
+    text-align: center;
+    justify-content: center;
+}
+.rightSide > div {
+    background-color: #dddddd;
+    color: #023e8a;
+    padding: 10px;
+    margin: 20px;
+    font-family: trebuchet;
+    font-size: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 0px 10px grey;
+
+    width: 200px;
+    text-align: center;
+}
+.flex-item-main:hover{
+    background-color: #dbdbdb;
+    
+    width: 210px;
+    transition: width 0.5s;
+    transform: translate( 0px, -5px);
+
+    box-shadow: 0px 0px 10px rgb(255, 255, 255);
+}
+
+.top-bar {
+    max-width: 1000px;
+    margin: auto;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom:20px;
+}
+form {
+  display:flex; gap:10px; 
+}
+input, select {
+  padding:8px;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+button {
+  padding:8px 14px;
+  border:none;
+  border-radius:6px;
+  background:#3498db;
+  color:white;
+  cursor:pointer;
+}
+button:hover {
+  background:#2980b9;
+}
+#userTable { 
+  margin-top:20px; 
+}
+.logout {
+  display:block;
+  margin-top:20px;
+  text-align:center;
+}
+.form-box {
+  max-width:600px;
+  margin:auto;
+  background:#fff;
+  padding:20px;
+  border-radius:12px;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+input, textarea, button {
+  width:100%; 
+  padding:12px; 
+  margin:8px 0; 
+  border-radius:6px; 
+  border:1px solid #ccc;
+}
+button {
+  background:#27ae60;
+  border:none;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+}
+button:hover {
+  background:#219150;
+}
+
+.footer
+{
+	position: fixed;
+	background-color: #0096c7;
+	bottom: 0;
+	width:100%;
+	color: white;
+	font-family: Raleway-Medium;
+	text-align: center;
+	font-size: 15x;
+}

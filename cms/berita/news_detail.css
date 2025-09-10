@@ -1,0 +1,62 @@
+
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+   font-family: Trebuchet;
+   src: url("../file/Font/Trebuchet.ttf");
+}
+@font-face {
+   font-family:Bahnschrift;
+   src: url("../file/Font/Bahnschrift.ttf");
+}
+@font-face {
+   font-family: BebasNeue;
+   src: url("../file/Font/BebasNeue.otf");
+}
+@font-face {
+   font-family: Raleway-Light;
+   src: url("../file/Font/Raleway-Light.ttf");
+}
+@font-face {
+   font-family: Raleway-Medium;
+   src: url("../file/Font/Raleway-Medium.ttf");
+}
+@font-face {
+   font-family: FreeHand;
+   src: url("../file/Font/FreeHand.ttf");
+}
+@font-face {
+   font-family: SegoeUI;
+   src: url("../file/Font/segoeui.ttf");
+}
+
+body {
+    font-family: Arial, sans-serif; 
+    margin:0; 
+    padding:20px; 
+    background:#f5f5f5; 
+}
+    
+.article { 
+    max-width:800px; 
+    margin:auto; 
+    background:white; 
+    padding:20px; 
+    border-radius:8px; 
+}
+    
+.article img { 
+    width:100%; 
+    border-radius:8px; 
+    margin-bottom:15px; 
+}
+    
+h1 { 
+    color:#003366; 
+}
+    
+.meta { 
+    font-size:12px; 
+    color:#777; 
+    margin-bottom:10px; 
+}
