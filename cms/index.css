@@ -136,7 +136,7 @@ a {
 	background: rgba(0, 0, 0, 0.5);
 	padding: 10px 30px 0px 20px;
 	flex: 30%;
-	
+	margin-top: 20px;
 }
 
 .flex-item-right h2

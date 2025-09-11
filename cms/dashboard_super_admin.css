@@ -77,6 +77,9 @@ body {
   .content {   
     flex-direction: column;
   }
+  .roleHeader h1 {
+    font-size: 25px;
+  }
 }
 
 .content {  

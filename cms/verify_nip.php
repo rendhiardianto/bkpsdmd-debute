@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "../db.php"; // adjust path to your DB connection
+include "db.php"; // adjust path to your DB connection
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nip = $conn->real_escape_string($_POST['nip']);
@@ -8,15 +8,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // 1. Check NIP in data_pegawai
     $pegawaiResult = $conn->query("SELECT * FROM data_pegawai WHERE nip='$nip'");
     if ($pegawaiResult->num_rows == 0) {
-        $error = "NIP tidak ditemukan dalam database pegawai.";
+        $error = "NIP tidak ditemukan dalam database khusus pegawai BKPSDMD Merangin.";
     } else {
         // 2. Check if already registered
         $userResult = $conn->query("SELECT * FROM users WHERE nip='$nip'");
         if ($userResult->num_rows > 0) {
-            $error = "NIP ini sudah terdaftar sebagai user, silahkan login.";
+            $error = "NIP ini sudah terdaftar pada akun CMS, silahkan Login.";
         } else {
+            // ✅ Set session flag + store verified NIP
+            $_SESSION['allow_signup'] = true;
+            $_SESSION['verified_nip'] = $nip;
+            
             // ✅ Redirect to signup.php with NIP parameter
-            header("Location: ../signup.php?nip=" . urlencode($nip));
+            header("Location: signup.php?nip=" . urlencode($nip));
             exit();
         }
     }
@@ -32,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="header">
         <div class="logo">
-            <a href="../index.php" target="_blank"><img src="/icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
+            <a href="index.php" target="_blank"><img src="../icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
         </div>
     </div>
 

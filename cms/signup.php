@@ -1,13 +1,25 @@
 <?php
 session_start();
-include "db.php";
 
+// 🔹 Restrict access unless verified
+if (!isset($_SESSION['allow_signup']) || $_SESSION['allow_signup'] !== true) {
+    header("Location: verify_nip.php"); // adjust path
+    exit();
+}
+
+include "db.php";
 // capture NIP if coming from verify_nip.php
 $prefilledNip = "";
 $readonlyNip = "";
 if (isset($_GET['nip'])) {
     $prefilledNip = $conn->real_escape_string($_GET['nip']);
     $readonlyNip = "readonly"; // make the input read-only
+}
+
+// fallback to GET (if needed)
+if (empty($prefilledNip) && isset($_GET['nip'])) {
+    $prefilledNip = $conn->real_escape_string($_GET['nip']);
+    $readonlyNip  = "readonly";
 }
 
 // Load PHPMailer classes manually (no Composer)
@@ -150,10 +162,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
                 $mail->isHTML(true);
                 $mail->Subject = "Verifkasi email Anda";
-                $mail->Body = "Halo #KantiASN, S$fullname,<br><br>
-                               Mohon untuk verifikasi email anda terlebih dahulu, klik link berikut:<br>
-                               <a href='$verifyLink'>$verifyLink</a><br><br>
-                               Best Regards,<br>Tim PUSDATIN BKPSDMD Kab. Merangin";
+                // 🔹 Build the button as styled <a> tag
+                $mail->Body = "
+                Halo #KantiASN $fullname,<br><br>
+                Mohon untuk verifikasi email anda terlebih dahulu, klik tombol di bawah ini:<br><br>
+
+                <a href='$verifyLink' 
+                  style='display:inline-block; padding:12px 24px; 
+                          background-color:#007bff; color:#ffffff; 
+                          text-decoration:none; font-size:16px; 
+                          border-radius:5px;'>
+                          Verifikasi
+                </a>
+
+                <br><br>
+                Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br>
+                <a href='$verifyLink'>$verifyLink</a><br><br>
+
+                Best Regards,<br>
+                Tim PUSDATIN BKPSDMD Kab. Merangin
+                ";
 
                 $mail->send();
                 echo "<script>alert('Cek email akun Gmail #KantiASN untuk verifikasi!'); window.location='index.php'; </script>";
@@ -174,7 +202,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
     <div class="header">
         <div class="logo">
-            <a href="../index.php" target="_blank"><img src="/icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
+            <a href="../index.php" target="_blank"><img src="../icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
         </div>
     </div>
     

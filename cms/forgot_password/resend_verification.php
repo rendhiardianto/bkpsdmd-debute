@@ -36,47 +36,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         // Send email with PHPMailer
         $mail = new PHPMailer(true);
-            try {
-                $mail->isSMTP();
-                $mail->Host = 'smtp.gmail.com';
+        try {
+           $mail->isSMTP();
+              $mail->Host = 'smtp.gmail.com';
                 $mail->SMTPAuth = true;
-                $mail->Username = 'bkd.merangin@gmail.com';
-                $mail->Password = 'dlmh zkgz awku aokg'; 
+                $mail->Username = 'bkd.merangin@gmail.com';  // 🔹 replace with your Gmail
+                $mail->Password = 'dlmh zkgz awku aokg';   // 🔹 use Gmail App Password (not normal password!)
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
-                $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Merangin');
-                $mail->addAddress($email, $fullname);
+                $mail->setFrom('yourgmail@gmail.com', 'apa ini');
+                $mail->addAddress($email, $user['fullname']);
 
-                $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
-                $mail->isHTML(true);
-                $mail->Subject = "Verifkasi email Anda";
-                // 🔹 Build the button as styled <a> tag
-                $mail->Body = "
-                Halo #KantiASN, $fullname,<br><br>
-                Mohon untuk verifikasi email anda terlebih dahulu, klik tombol di bawah ini:<br><br>
+            $verifyLink = "http://localhost/bkpsdmd-cms/cms/example/verify.php?token=$token";
+            $mail->isHTML(true);
+            $mail->Subject = "Resend Verification Email";
+            $mail->Body = "Hello $fullname,<br><br>
+                          Here is your verification link:<br>
+                          <a href='$verifyLink'>$verifyLink</a><br><br><br>
+                          Best Regards,<br>Tim PUSDATIN BKPSDMD Kab. Merangin";
 
-                <a href='$verifyLink' 
-                  style='display:inline-block; padding:12px 24px; 
-                          background-color:#007bff; color:#ffffff; 
-                          text-decoration:none; font-size:16px; 
-                          border-radius:5px;'>
-                          Verifikasi
-                </a>
+            $mail->send();
+            // ✅ Update last resend time
+            $conn->query("UPDATE users SET last_resend=NOW() WHERE id=" . $user['id']);
 
-                <br><br>
-                Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br>
-                <a href='$verifyLink'>$verifyLink</a><br><br>
-
-                Best Regards,<br>
-                Tim PUSDATIN BKPSDMD Kab. Merangin
-                ";
-
-                $mail->send();
-                echo "<script>alert('Cek email akun Gmail #KantiASN untuk verifikasi!'); window.location='index.php'; </script>";
-            } catch (Exception $e) {
-                echo "<script>alert('Mailer Error: {$mail->ErrorInfo}');</script>";
-            }
+            echo "<script>alert('Verification email resent! Check your inbox.'); 
+            window.location='index.php';</script>";
+        } catch (Exception $e) {
+            echo "<script>alert('Mailer Error: {$mail->ErrorInfo}'); window.location='index.php';</script>";
+        }
     } else {
         echo "<script>alert('No unverified account found with this email.'); window.location='index.php';</script>";
     }

@@ -67,7 +67,7 @@ $user = $result->fetch_assoc();
             else
             {
               echo "Selamat Malam ";
-              echo "&#9789;";
+              echo "&#9790;";
             }
           ?>
         </div>

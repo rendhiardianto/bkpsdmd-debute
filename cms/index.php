@@ -30,7 +30,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         $user = $result->fetch_assoc();
 
         if ($user['verified'] == 0) {
-            echo "<script>alert('Your NIP is not verified. Click Resend Verification.');</script>";
+            echo "<script>alert('NIP Anda belum diverifikasi. Klik Resend Verification.');</script>";
             $showResend = true; // show button now
         } 
         elseif (password_verify($password, $user['password'])) {
@@ -45,12 +45,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
             }
             exit();
         } else {
-            echo "<script>alert('Invalid password!');</script>";
+            echo "<script>alert('Kata Sandi Anda salah!');</script>";
         }
     }
 
     else {
-        echo "<script>alert('NIP not found! Please register.');</script>";
+        echo "<script>alert('NIP tidak ditemukan! Silahkan daftar.');</script>";
     }
 }
 
@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['resend'])) {
         $user = $result->fetch_assoc();
 
         if ($user['verified'] == 1) {
-            echo "<script>alert('Your account is already verified. Please login.');</script>";
+            echo "<script>alert('Akun anda sudah diverfikasi, Silahkan Login.');</script>";
         } else {
             $token = bin2hex(random_bytes(16));
             $conn->query("UPDATE users SET verifY_token='$token' WHERE email='$email'");
@@ -78,25 +78,40 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['resend'])) {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
-                $mail->setFrom('yourgmail@gmail.com', 'apa ini');
+                $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Merangin');
                 $mail->addAddress($email, $user['fullname']);
 
                 $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
                 $mail->isHTML(true);
-                $mail->Subject = "Verify Your Account";
-                $mail->Body = "Hello {$user['fullname']},<br><br>
-                               Click below to verify your account:<br>
-                               <a href='$verifyLink'>$verifyLink</a><br><br><br>
-                               Best Regards,<br>Tim PUSDATIN BKPSDMD Kab. Merangin";
+                $mail->Subject = "Verifikasi Akun Anda";
+                $mail->Body = "
+                Halo #KantiASN, $fullname,<br><br>
+                Mohon untuk verifikasi email anda terlebih dahulu, klik tombol di bawah ini:<br><br>
+
+                <a href='$verifyLink' 
+                  style='display:inline-block; padding:12px 24px; 
+                          background-color:#007bff; color:#ffffff; 
+                          text-decoration:none; font-size:16px; 
+                          border-radius:5px;'>
+                          Verifikasi
+                </a>
+
+                <br><br>
+                Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br>
+                <a href='$verifyLink'>$verifyLink</a><br><br>
+
+                Best Regards,<br>
+                Tim PUSDATIN BKPSDMD Kab. Merangin
+                ";
 
                 $mail->send();
-                echo "<script>alert('Verification email resent! Please check your inbox.');</script>";
+                echo "<script>alert('Email verifikasi sudah terkirim! Periksa kotak masuk email Anda.');</script>";
             } catch (Exception $e) {
                 echo "<script>alert('Mailer Error: {$mail->ErrorInfo}');</script>";
             }
         }
     } else {
-        echo "<script>alert('No account found with that NIP. Please register again.');</script>";
+        echo "<script>alert('NIP tidak terdaftar pada akun CMS. Silahkan daftar akun.');</script>";
     }
 }
 ?>
@@ -138,16 +153,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['resend'])) {
                     <input type="password" id="password" name="password" placeholder="Kata Sandi" required>
                     <i class="fa-solid fa-eye toggle-eye" id="togglePassword"></i>
                 </div>
+                <p><a href="forgot_password/forgot_password.php" style="text-decoration: underline; color:#00b4d8;">Lupa Kata Sandi?</a></p>
+                <input type="submit" class="btn btn-success btn-block" name="login" value="Masuk"/>
 
-                <p><a href="forgot_password.php" style="text-decoration: underline; color:#00b4d8;">Lupa Kata Sandi?</a></p>
-
-                <br><br><input type="submit" class="btn btn-success btn-block" name="login" value="Masuk"/>
-
-            <?php if ($showResend): ?>
-                <p><a href="resend_verification.php?email=<?php echo urlencode($email); ?>" class="resend-btn">Kirim ulang verifikasi?</a></p>
+                <?php if ($showResend): ?>
+                    <p><a href="resend_verification.php?email=<?php echo urlencode($email); ?>" class="resend-btn">Kirim ulang verifikasi?</a></p>
                 <?php endif; ?>
             </form>
-            <p style="margin-top: 30px;">Belum ada akun? daftar <a href="cms_admin_authority/verify_nip.php" style="text-decoration: underline; color: #00b4d8;">di sini</a></p>               
+            <p style="margin-top: 30px;">Belum ada akun? daftar <a href="verify_nip.php" style="text-decoration: underline; color: #00b4d8;">di sini</a></p>               
         </div>
         
     </div>

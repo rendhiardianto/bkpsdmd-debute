@@ -112,12 +112,9 @@ if ($result->num_rows == 0) {
   <div class="column fourth">
 		<h3>Kunjungan Website</h3>
 		<p>Hari Ini</p>
-		<p>Total</p>
-	  
-	  	
+		<p>Total</p>	  	
 	  <img src="/icon/BerAkhlak.png" alt="Logo BerAkhlak">
-	  
-  </div>
+</div>
 </div>
 </body>
 </html>
