@@ -147,7 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['resend'])) {
                 <p><a href="resend_verification.php?email=<?php echo urlencode($email); ?>" class="resend-btn">Kirim ulang verifikasi?</a></p>
                 <?php endif; ?>
             </form>
-            <p style="margin-top: 30px;">Belum ada akun? daftar <a href="signup.php" style="text-decoration: underline; color: #00b4d8;">di sini</a></p>               
+            <p style="margin-top: 30px;">Belum ada akun? daftar <a href="cms_admin_authority/verify_nip.php" style="text-decoration: underline; color: #00b4d8;">di sini</a></p>               
         </div>
         
     </div>

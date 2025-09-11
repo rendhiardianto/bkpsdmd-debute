@@ -31,7 +31,7 @@ $user = $result->fetch_assoc();
             </div>
 
             <div class="navbar">
-              <a href="logout.php" class="logout" style="text-decoration: none;">Logout  <img src="../icon/button/exit.png" width="30px" style="vertical-align:middle;"></a>
+              <a href="logout.php" class="logout" style="text-decoration: none;">Logout &#10006;</a>
             </div> 
   </div>
   <div class="roleHeader">
@@ -51,19 +51,23 @@ $user = $result->fetch_assoc();
 
             if (($a >=4) && ($a<=10))
             {
-              echo "Selamat Pagi!";
+              echo "Selamat Pagi ";
+              echo "&#9728;";
             }
             elseif (($a>=11) && ($a<=15))
             {
-              echo "Selamat Siang!";
+              echo "Selamat Siang ";
+              echo "&#9729;";
             }
             elseif (($a>=16) && ($a<=18))
             {
-              echo "Selamat Sore!";
+              echo "Selamat Sore ";
+              echo "&#9788;";
             }
             else
             {
-              echo "Selamat Malam!";
+              echo "Selamat Malam ";
+              echo "&#9789;";
             }
           ?>
         </div>
