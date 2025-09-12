@@ -1,5 +1,7 @@
 <?php
+session_start();
 include "../db.php";
+include "../config.php";
 
 // Load PHPMailer classes manually (no Composer)
 use PHPMailer\PHPMailer\PHPMailer;
@@ -32,10 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $mail->Port = 587;
 
             // Recipients
-            $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Merangin');
+            $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Kab. Merangin');
             $mail->addAddress($email, $fullname);
 
-            $resetLink = "http://localhost/bkpsdmd-cms/cms/forgot_password/reset_password.php?token=$token";
+            //$resetLink = "https://bkpsdmd.meranginkab.go.id/cms/forgot_password/reset_password.php?token=$token";
+            $resetLink = $baseUrl . "/forgot_password/reset_password.php?token=" . urlencode($token);
             $mail->isHTML(true);
             $mail->Subject = "Reset Password Akun CMS";
             $mail->Body = "
@@ -53,7 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <br><br>
                 Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br>
-                <a href='$resetLink'>$resetLink</a><br><br>
+                <br><a href='$resetLink'>$resetLink</a><br><br>
 
                 Best Regards,<br>
                 Tim PUSDATIN BKPSDMD Kab. Merangin
@@ -74,21 +77,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Forgot Password</title>
-  <style>
-    body { font-family: Arial; background:#f4f6f9; padding:30px; }
-    .form-box { max-width:400px; margin:auto; background:#fff; padding:20px; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.1); }
-    input, button { width:100%; padding:12px; margin:8px 0; border-radius:6px; border:1px solid #ccc; }
-    button { background:#e67e22; border:none; color:white; font-weight:bold; cursor:pointer; }
-    button:hover { background:#d35400; }
-  </style>
+  <title>Lupa Kata Sandi</title>
+  <link href="forgot_password.css" rel="stylesheet">
 </head>
 <body>
   <div class="form-box">
-    <h2>Forgot Password</h2>
+    <h2>Lupa Kata Sandi</h2>
     <form method="POST">
       <input type="email" name="email" placeholder="Masukkan email Anda" required>
-      <button type="submit">Kirim Link Reset Password</button>
+      <button type="submit">Kirim Link Reset Kata Sandi</button>
     </form>
     <p><a href="../index.php">Kembali ke halaman Login</a></p>
   </div>

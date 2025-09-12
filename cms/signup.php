@@ -6,8 +6,11 @@ if (!isset($_SESSION['allow_signup']) || $_SESSION['allow_signup'] !== true) {
     header("Location: verify_nip.php"); // adjust path
     exit();
 }
-
 include "db.php";
+
+include "config.php"; // make sure path is correct
+
+
 // capture NIP if coming from verify_nip.php
 $prefilledNip = "";
 $readonlyNip = "";
@@ -46,6 +49,7 @@ if (!empty($nipFromGet)) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $nip = $conn->real_escape_string($_POST['nip']);
     $fullname = $conn->real_escape_string($_POST['fullname']);
     $email = $conn->real_escape_string($_POST['email']);
@@ -156,10 +160,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                 $mail->Port = 587;
 
-                $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Merangin');
+                $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Kab. Merangin');
                 $mail->addAddress($email, $fullname);
 
-                $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
+               // $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
+                $verifyLink = $baseUrl . "verify.php?token=" . urlencode($token);
                 $mail->isHTML(true);
                 $mail->Subject = "Verifkasi email Anda";
                 // 🔹 Build the button as styled <a> tag
@@ -176,8 +181,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </a>
 
                 <br><br>
-                Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br>
-                <a href='$verifyLink'>$verifyLink</a><br><br>
+                Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br><b>
+                
+                <br><a href='$verifyLink'>$verifyLink</a><br><br>
 
                 Best Regards,<br>
                 Tim PUSDATIN BKPSDMD Kab. Merangin

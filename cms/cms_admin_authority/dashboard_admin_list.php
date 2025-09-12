@@ -1,6 +1,10 @@
 <?php
 session_start();
 
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 include "../db.php";
 include "../auth.php";
 
@@ -53,7 +57,7 @@ $user = $profileResult->fetch_assoc();
 <head>
   <meta charset="UTF-8">
   <title>Dashboard - CMS Users </title>
-  <link href="dashboard_admin_cms.css" rel="stylesheet" type="text/css">
+  <link href="dashboard_admin_list.css" rel="stylesheet" type="text/css">
 </head>
 <body>
   <div class="header">

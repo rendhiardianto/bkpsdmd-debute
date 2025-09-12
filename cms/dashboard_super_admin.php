@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+header("Cache-Control: no-cache, no-store, must-revalidate");
+header("Pragma: no-cache");
+header("Expires: 0");
 
 include "db.php";
 include "auth.php";
@@ -98,7 +103,7 @@ $user = $result->fetch_assoc();
     </div>
 
     <div class="flex-item-main">
-      <p><a href="cms_admin_authority/dashboard_admin_cms.php">
+      <p><a href="cms_admin_authority/dashboard_admin_list.php">
         <img src="../icon/button/profil.png" width="100"></a><br>CMS USER</p>
     </div>
 

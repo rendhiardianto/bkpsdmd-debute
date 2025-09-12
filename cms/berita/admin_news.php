@@ -1,8 +1,12 @@
 <?php
+session_start();
+
 include "../db.php";
 include "../auth.php";
 
 requireRole(['admin', 'user']);
+
+
 // (Optional) check if admin logged in
 // if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') { header("Location: login.php"); exit; }
 

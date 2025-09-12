@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 // Check role
 function requireRole($roles = []) {
     if (!isset($_SESSION['role'])) {
-        header("Location: login.php");
+        header("Location: index.php");
         exit;
     }
 
@@ -26,7 +26,7 @@ function requireRole($roles = []) {
 
     if (!in_array($_SESSION['role'], $roles)) {
         // Role not allowed → redirect to login or dashboard
-        header("Location: unauthorized.php");
+        header("Location: index.php");
         exit;
     }
 }

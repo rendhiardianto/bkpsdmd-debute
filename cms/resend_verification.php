@@ -1,5 +1,6 @@
 <?php
 include "db.php";
+include "config.php";
 
 // Load PHPMailer classes manually (no Composer)
 use PHPMailer\PHPMailer\PHPMailer;
@@ -48,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Merangin');
                 $mail->addAddress($email, $fullname);
 
-                $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
+                //$verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
+                $verifyLink = $baseUrl . "verify.php?token=" . urlencode($token);
                 $mail->isHTML(true);
                 $mail->Subject = "Verifkasi email Anda";
                 // 🔹 Build the button as styled <a> tag
@@ -66,7 +68,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <br><br>
                 Jika tombol di atas tidak berfungsi, Anda juga bisa klik link ini:<br>
-                <a href='$verifyLink'>$verifyLink</a><br><br>
+
+                <br><a href='$verifyLink'>$verifyLink</a><br><br>
 
                 Best Regards,<br>
                 Tim PUSDATIN BKPSDMD Kab. Merangin
