@@ -18,9 +18,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tmpPath = $_FILES['thumbnail']['tmp_name'];
 
         list($width, $height) = getimagesize($tmpPath);
-
-        $newWidth = 800;   // desired width
-        $newHeight = 400;  // desired height
+        $newWidth = 2560;
+        $newHeight = 1440;
 
         $src = imagecreatefromstring(file_get_contents($tmpPath));
         $dst = imagecreatetruecolor($newWidth, $newHeight);

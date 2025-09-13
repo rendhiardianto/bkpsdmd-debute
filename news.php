@@ -58,6 +58,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
 		<div class="dropdown">
 			<button onclick="toggleDropdown('menu3')" class="dropbtn">TRANSPARANSI <i class="fa fa-caret-down"></i></button>
 		  <div id="menu3" class="dropdown-content">
+			<a href="transparansi.html#renstra">Perbup</a>
 			<a href="transparansi.html#renstra">Rencana Stategis</a>
 			<a href="transparansi.html#renja">Rencana Kerja</a>
 			<a href="transparansi.html#iku">Indikator Kinerja Utama</a>

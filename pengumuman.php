@@ -7,6 +7,7 @@ $result = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
 <!doctype html>
 <html>
 <head>
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-65T4XSDM2Q"></script>
 <script>
@@ -15,6 +16,7 @@ $result = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
   gtag('js', new Date());
   gtag('config', 'G-65T4XSDM2Q');
 </script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -58,6 +60,7 @@ $result = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
 		<div class="dropdown">
 			<button onclick="toggleDropdown('menu3')" class="dropbtn">TRANSPARANSI <i class="fa fa-caret-down"></i></button>
 		  <div id="menu3" class="dropdown-content">
+			<a href="transparansi.html#renstra">Perbup</a>
 			<a href="transparansi.html#renstra">Rencana Stategis</a>
 			<a href="transparansi.html#renja">Rencana Kerja</a>
 			<a href="transparansi.html#iku">Indikator Kinerja Utama</a>

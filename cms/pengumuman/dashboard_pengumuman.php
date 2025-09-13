@@ -4,11 +4,6 @@ include "../auth.php";
 
 requireRole(['admin', 'user']);
 
-/*if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: dashboard_admin.php");
-    exit;
-}*/
-
 // Handle delete action
 if (isset($_GET['delete'])) {
     $id = intval($_GET['delete']);
@@ -29,30 +24,29 @@ if (isset($_GET['delete'])) {
         exit;
     }
 }
+
 $result = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $conn->real_escape_string($_POST['title']);
     $content = $conn->real_escape_string($_POST['content']);
+    $created_by = $_SESSION['fullname'];
 
-    // Upload thumbnail
+    // === Upload Thumbnail (keep your resize logic) ===
     $thumbnail = null;
     if (!empty($_FILES['thumbnail']['name'])) {
         $thumbName = uniqid("thumb_") . "." . pathinfo($_FILES['thumbnail']['name'], PATHINFO_EXTENSION);
         $tmpPath = $_FILES['thumbnail']['tmp_name'];
 
         list($width, $height) = getimagesize($tmpPath);
-
-        $newWidth = 800;   // desired width
-        $newHeight = 400;  // desired height
+        $newWidth = 2560;
+        $newHeight = 1440;
 
         $src = imagecreatefromstring(file_get_contents($tmpPath));
         $dst = imagecreatetruecolor($newWidth, $newHeight);
 
-        // resize
         imagecopyresampled($dst, $src, 0, 0, 0, 0, $newWidth, $newHeight, $width, $height);
 
-        // save as jpeg (quality 90)
         imagejpeg($dst, "uploads/thumbnails/" . $thumbName, 90);
 
         imagedestroy($src);
@@ -61,22 +55,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $thumbnail = $thumbName;
     }
 
-    // Upload attachment
-
+    // === Upload Attachment (keep original name) ===
     $attachment = null;
     if (!empty($_FILES['attachment']['name'])) {
-        $fileName = uniqid("file_") . "." . pathinfo($_FILES['attachment']['name'], PATHINFO_EXTENSION);
-        move_uploaded_file($_FILES['attachment']['tmp_name'], "uploads/files/" . $fileName);
-        $attachment = $fileName;
-    }
-    $created_by = $_SESSION['fullname'];
+        // Original name
+        $originalName = basename($_FILES['attachment']['name']);
+        $ext = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
+        $nameOnly = pathinfo($originalName, PATHINFO_FILENAME);
 
-    $conn->query("INSERT INTO announcements (title, content, thumbnail, attachment, created_by, created_at) 
-                  VALUES ('$title', '$content', '$thumbnail', '$attachment', '$created_by', NOW())");
+        $uploadDir = __DIR__ . "/uploads/files/";
+        if (!is_dir($uploadDir)) {
+            mkdir($uploadDir, 0777, true);
+        }
+
+        // Prevent overwrite: add _1, _2, etc.
+        $targetFile = $uploadDir . $originalName;
+        $counter = 1;
+        while (file_exists($targetFile)) {
+            $newName = $nameOnly . "_" . $counter . "." . $ext;
+            $targetFile = $uploadDir . $newName;
+            $counter++;
+        }
+
+        $attachment = basename($targetFile); // store only file name
+
+        if (!move_uploaded_file($_FILES['attachment']['tmp_name'], $targetFile)) {
+            echo "<script>alert('Gagal mengunggah lampiran.');</script>";
+            $attachment = null;
+        }
+    }
+
+    // === Save to DB ===
+    $stmt = $conn->prepare("INSERT INTO announcements (title, content, thumbnail, attachment, created_by, created_at) VALUES (?,?,?,?,?,NOW())");
+    $stmt->bind_param("sssss", $title, $content, $thumbnail, $attachment, $created_by);
+    $stmt->execute();
+    $stmt->close();
 
     echo "<script>alert('Pengumuman berhasil diunggah!'); window.location='dashboard_pengumuman.php';</script>";
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
