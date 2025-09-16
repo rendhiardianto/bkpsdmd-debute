@@ -118,6 +118,11 @@ $user = $result->fetch_assoc();
     </div>
 
     <div class="flex-item-main">
+      <p><a href="blog/admin_blog.php">
+        <img src="../icon/button/blog.png" ></a><br>BLOG</p>
+    </div>
+
+    <div class="flex-item-main">
       <p><a href="infoGrafis/admin_infoGrafis.php">
         <img src="../icon/button/graphics.png" ></a><br>INFOGRAFIS</p>
     </div>

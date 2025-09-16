@@ -19,7 +19,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
 
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News & Updates</title>
+  <title>Berita ASN - BKPSDMD Kab. Merangin</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
@@ -49,10 +49,10 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
 		</div>
 		
 		<div class="dropdown">
-			<button onclick="toggleDropdown('menu2')" class="dropbtn">BERITA <i class="fa fa-caret-down"></i></button>
+			<button onclick="toggleDropdown('menu2')" class="dropbtn">ARTIKEL <i class="fa fa-caret-down"></i></button>
 		  <div id="menu2" class="dropdown-content">
-			<a href="news.php">Berita Terkini</a>
-			<a href="berita.html#agenda">Agenda Kegiatan</a>
+			<a href="news.php">Berita ASN</a>
+			<a href="blog.php">Blog ASN</a>
 		  </div>
 		</div>
 		
@@ -94,7 +94,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
 </div>
 
 <header>
-  <h2>Berita Kepegawaian Merangin</h2>
+  <h2>Berita Kepegawaian dan Pengembangan SDM Kab. Merangin</h2>
 </header>
 
 <div class="container">
@@ -116,7 +116,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
 
   <!-- Sidebar -->
   <div class="sidebar">
-    <h3>Berita Terbaru</h3>
+    <h3>Berita Terkini</h3>
     <ul>
       <?php
       $latest = $conn->query("SELECT id, title FROM news ORDER BY created_at DESC LIMIT 5");
@@ -126,7 +126,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
       <?php endwhile; ?>
     </ul>
 
-    <h3>Kategori</h3>
+    <h3>Kategori Berita</h3>
     <ul>
       <?php
       $cats = $conn->query("SELECT DISTINCT category FROM news");

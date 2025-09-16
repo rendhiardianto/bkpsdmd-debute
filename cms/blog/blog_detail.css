@@ -1,0 +1,152 @@
+
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+   font-family: Trebuchet;
+   src: url("/file/Font/Trebuchet.ttf");
+}
+@font-face {
+   font-family:Bahnschrift;
+   src: url("/file/Font/Bahnschrift.ttf");
+}
+@font-face {
+   font-family: BebasNeue;
+   src: url("/file/Font/BebasNeue.otf");
+}
+@font-face {
+   font-family: Raleway-Light;
+   src: url("/file/Font/Raleway-Light.ttf");
+}
+@font-face {
+   font-family: Raleway-Medium;
+   src: url("/file/Font/Raleway-Medium.ttf");
+}
+@font-face {
+   font-family: FreeHand;
+   src: url("/file/Font/FreeHand.ttf");
+}
+@font-face {
+   font-family: SegoeUI;
+   src: url("/file/Font/segoeui.ttf");
+}
+
+body {
+    font-family: Arial, sans-serif; 
+    margin:0; 
+    background:#ffffff; 
+}  
+.article { 
+    max-width:900px; 
+    margin:auto; 
+    background:rgb(241, 241, 241); 
+    padding:20px; 
+
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.432);
+}    
+h1 { 
+    color:#003366; 
+}
+.meta { 
+    font-size:15px; 
+    color:#0096c7; 
+    margin-bottom:10px; 
+}
+.article img { 
+    width:80%;
+    margin: auto;
+    display: block;
+    border-radius:8px; 
+    margin-bottom:30px; 
+    margin-top: 30px;
+}
+.article p { 
+    font-family: Arial, Helvetica, sans-serif; 
+    line-height: 1.6;
+    font-size:20px; 
+    margin: 20px 0px;
+    text-align: left;
+} 
+@media screen and (max-width: 600px) { 
+    .article img { 
+        width:80%; 
+    } 
+    .article p { 
+        font-size:16px; 
+    } 
+}
+/* =================================== FOOTER =========================================*/
+* {
+	box-sizing: border-box;
+}
+.row{
+   margin: auto;
+}
+.column {
+	overflow: hidden;
+	float: left;
+	padding: 10px;
+	color: white;
+	height: 260px;
+	font-family: Raleway-Medium;
+	font-size: 15px;
+}
+.first{
+	width: 22.5%;
+   background-color: #0096c7;
+} 
+.first img {
+   width: 100%;
+	margin: auto;
+    display: block;
+}
+
+.second {
+ 	width: 35%;
+	text-align: left;
+	background-color: #00b4d8;
+	color: white;
+}
+.second img{
+	width: 40px;
+	margin-right: 10px;
+}
+
+.third {
+  width: 20%;
+  background-color: #0096c7;
+}
+.third img {
+	width: 40px;
+	margin-left: 5px;
+	padding-bottom: 20px;
+}
+
+.fourth {
+	width: 22.5%;
+	background-color: #00b4d8;
+	padding-bottom: 20px;
+	padding-top: 10px;
+}
+.fourth p {
+	text-align: left;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.fourth img{
+	margin: auto;
+   display: block;
+	width: 100%;
+}
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 800px) {
+  .first, .second, .third, .fourth {
+	  width: 100%;
+	  height: auto;
+	}
+	.first img{
+		width: 70%;
+	}
+   .fourth img {
+		width: 70%;
+	}
+}

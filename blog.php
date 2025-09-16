@@ -1,7 +1,14 @@
-<!doctype html>
-<html>
+<?php
+include "cms/db.php"; // your DB connection file
+
+// Fetch latest news
+$result = $conn->query("SELECT * FROM blog ORDER BY created_at DESC LIMIT 10");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
+  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-65T4XSDM2Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -9,28 +16,28 @@
   gtag('js', new Date());
   gtag('config', 'G-65T4XSDM2Q');
 </script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-<link href="headerFooter.css" rel="stylesheet" type="text/css">
-<link href="galeri.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog ASN - BKPSDMD Kabupaten Merangin</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
-<title>Galeri - BKPSDMD Kabupaten Merangin</title>
-<link rel="shortcut icon" href="icon/IconWeb.png">
+  <link href="headerFooter.css" rel="stylesheet" type="text/css">
+  <link href="blog.css" rel="stylesheet" type="text/css">
+
 </head>
-
 <body>
-	
+
 <div class="topnav" id="mynavBtn">
-	
 	<div class="navLogo">
 		<a href="index.php"><img src="icon/BKPLogo3.png" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
 	</div>
 	
 	<div class="navRight" >
-		<div class="dropdown">
+		
+		<div class="dropdown" class="active">
 			<button onclick="toggleDropdown('menu1')" class="dropbtn">PROFIL <i class="fa fa-caret-down"></i></button>
 		  <div id="menu1" class="dropdown-content">
 			<a href="profil.html#visiMisi">Visi dan Misi</a>
@@ -85,15 +92,41 @@
 		<a href="javascript:void(0);" style="font-size:17px;" class="icon" onclick="myFunction()">&#9776;</a>
 	</div>
 </div>
-	
-<!------------------- CONTENT ----------------------------------->
 
-<div class="galeri">
-	<p>COMING SOON!!!</p>
-	<p>Mohon Bersabar Yaa!!!</p>
-	<p>This Page Is Under Construction, Thanks!</p>  
+<header>
+  <h2>Blog Feature ASN Kabupaten Merangin</h2>
+</header>
+
+<div class="container">
+  <!-- Blog List -->
+  <div class="blog-list">
+    <?php while ($row = $result->fetch_assoc()): ?>
+      <div class="blog-item">
+        <img src="cms/blog/<?php echo $row['image']; ?>" alt="Blog">
+        <div class="blog-content">
+          <h2><?php echo $row['title']; ?></h2>
+          <p><?php echo substr($row['content'], 0, 120) . "..."; ?></p>
+          <!--<a href="cms/berita/news_detail.php?id=<?php echo $row['id']; ?>" target="_blank">Read More</a>-->
+		  <a href="cms/blog/blog_detail.php?slug=<?php echo $row['slug']; ?>" target="_blank">Baca selengkapnya</a>
+
+        </div>
+      </div>
+    <?php endwhile; ?>
+  </div>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h3>Blog Terbaru</h3>
+    <ul>
+      <?php
+      $latest = $conn->query("SELECT id, title FROM blog ORDER BY created_at DESC LIMIT 5");
+      while ($n = $latest->fetch_assoc()):
+      ?>
+        <li><a href="cms/blog/blog_detail.php?id=<?php echo $n['id']; ?>"><?php echo $n['title']; ?></a></li>
+      <?php endwhile; ?>
+    </ul>
+  </div>
 </div>
-	
 <!------------------- FOOTER ----------------------------------->	
 	
 <div class="row">
@@ -115,7 +148,7 @@
 			<img src="icon/sosmed/WA.png" alt="Logo WA" width="30px" style="vertical-align:middle"></a> 
 			+62851 5999 7813</p>
 	  
-		<p><a href="bkd.merangin@gmail.com" target="_blank" class="em">
+		<p><a href="https://wa.me/6285159997813" target="_blank" class="em">
 			<img src="icon/sosmed/EM.png" alt="Logo Email" width="30px" style="vertical-align:middle"></a> 
 			bkd.merangin@gmail.com</p>
   </div>
@@ -143,17 +176,7 @@
   </div>
 </div>
 
-<!--<script> <h3 id="visitor-count">Loading...</h3>
-  fetch("counter.php")
-    .then(res => res.text())
-    .then(count => {
-      document.getElementById("visitor-count").innerText = count;
-    });
-</script>-->
-	
-<!------------------- BATAS AKHIR CONTENT ---------------------------------->
-	
 <script src="JavaScript/script.js"></script>
-	
+
 </body>
 </html>

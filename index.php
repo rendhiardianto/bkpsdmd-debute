@@ -35,7 +35,7 @@ while ($row = $result->fetch_assoc()) {
 <link href="headerFooter.css" rel="stylesheet" type="text/css">
 <link href="index.css" rel="stylesheet" type="text/css">
 
-<title>BKPSDMD Kabupaten Merangin</title>
+<title>Beranda - BKPSDMD Kabupaten Merangin</title>
 <link rel="shortcut icon" href="icon/IconWeb.png">
 </head>
 
@@ -65,10 +65,10 @@ while ($row = $result->fetch_assoc()) {
 		</div>
 		
 		<div class="dropdown">
-			<button onclick="toggleDropdown('menu2')" class="dropbtn">BERITA <i class="fa fa-caret-down"></i></button>
+			<button onclick="toggleDropdown('menu2')" class="dropbtn">ARTIKEL <i class="fa fa-caret-down"></i></button>
 		  <div id="menu2" class="dropdown-content">
-			<a href="news.php">Berita Terkini</a>
-			<a href="berita.html#agenda">Agenda Kegiatan</a>
+			<a href="news.php">Berita ASN</a>
+			<a href="blog.php">Blog ASN</a>
 		  </div>
 		</div>
 		

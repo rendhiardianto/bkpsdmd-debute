@@ -50,10 +50,10 @@ $result = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
 		</div>
 		
 		<div class="dropdown">
-			<button onclick="toggleDropdown('menu2')" class="dropbtn">BERITA <i class="fa fa-caret-down"></i></button>
+			<button onclick="toggleDropdown('menu2')" class="dropbtn">ARTIKEL <i class="fa fa-caret-down"></i></button>
 		  <div id="menu2" class="dropdown-content">
-			<a href="news.php">Berita Terkini</a>
-			<a href="berita.html#agenda">Agenda Kegiatan</a>
+			<a href="news.php">Berita ASN</a>
+			<a href="blog.php">Blog ASN</a>
 		  </div>
 		</div>
 		

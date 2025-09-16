@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /bkpsdmd-cms/cms/berita/
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^([a-zA-Z0-9_-]+)/?$ news_detail.php?slug=$1 [L,QSA]
+
+
