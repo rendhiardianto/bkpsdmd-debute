@@ -25,7 +25,7 @@ $user = $result->fetch_assoc();
   <title>Super Admin Dashboard</title>
   <link href="dashboard_super_admin.css" rel="stylesheet" type="text/css">
   <meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
-  <link rel="shortcut icon" href="images/button/logo2.png">
+  <link rel="shortcut icon" href="/icon/button/logo2.png">
 
 </head>
 <body>

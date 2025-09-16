@@ -33,10 +33,7 @@ body {
 }
 
 /* ============================================ CONTENT ==============================*/
-.coomingSoon {
-	text-align: center;
-   font-family: 'Courier New', Courier, monospace;
-	font-size: 50px;
-	font-family: Segoe UI;
-	color: #0077b6;
+.galeri p {
+   font-size: 70px;
+   text-align: center;
 }

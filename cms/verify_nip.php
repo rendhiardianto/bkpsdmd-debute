@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verifikasi NIP Akun CMS</title>
     <link href="verify_nip.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="/icon/button/logo2.png">
 </head>
 <body>
     <div class="header">

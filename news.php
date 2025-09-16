@@ -20,9 +20,12 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News & Updates</title>
-  <link href="news.css" rel="stylesheet" type="text/css">
+  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
+  <link href="headerFooter.css" rel="stylesheet" type="text/css">
+  <link href="news.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>

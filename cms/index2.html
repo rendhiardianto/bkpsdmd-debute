@@ -1,0 +1,103 @@
+<!DOCTYPE HTML>
+<html hreflang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
+
+<title>Sign in into CMS BKPSDMD</title>
+<link rel="shortcut icon" href="/icon/button/logo2.png">
+
+<link href="index2.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+<body>
+    <video autoplay muted loop id="myVideo" width="100%">
+        <source src="../videos/CMSVideo.mp4" type="video/mp4">
+    </video>
+
+    <div class="header">
+            <div class="logo">
+            	<a href="../index.php" target="_blank"><img src="../icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
+            </div>
+    </div>
+    <div class="flex-container">
+        <div class="flex-item-left">
+            <h2>THAT HORIZON MIGHT BE CLOSER THAN YOU THINK!<br><p>Just manage your task from anywhere in the world. Get things done, stay on top of your work, wherever you are.</p></h2>
+        </div>
+        
+        <div class="flex-item-right">
+            <form action="" method="POST">
+                <h2>Login into CMS</h2>
+                <p><label>NIP</label>
+                <br><input type="nip" placeholder="Nomor Induk Pegawai" name="nip" required></p>
+
+                <p><label>Kata Sandi</label>
+                <div class="input-with-icon">
+                    <input type="password" id="password" name="password" placeholder="Kata Sandi" required>
+                    <i class="fa-solid fa-eye toggle-eye" id="togglePassword"></i>
+                </div>
+                <p><a href="forgot_password/forgot_password.php" style="text-decoration: underline; color:#00b4d8;">Lupa Kata Sandi?</a></p>
+                <input type="submit" class="btn btn-success btn-block" name="login" value="Masuk"/>
+
+                <?php if ($showResend): ?>
+                    <p><a href="resend_verification.php?email=<?php echo urlencode($email); ?>" class="resend-btn">Kirim ulang verifikasi?</a></p>
+                <?php endif; ?>
+            </form>
+            <p style="margin-top: 30px;">Belum ada akun? daftar <a href="verify_nip.php" style="text-decoration: underline; color: #00b4d8;">di sini</a></p>               
+        </div>
+        
+    </div>
+    <div class="footer">
+        <p>Copyright &copy; 2025. Tim PUSDATIN - BKPSDMD Kabupaten Merangin.</p>
+    </div>
+
+</body>
+
+<script>
+var myIndex = 0;
+carousel();
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 5000);
+}
+</script>
+
+<script>
+  (function() {
+    var cx = '008927343735519909654:w8bciv_yp7u';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+
+<script>
+document.getElementById("togglePassword").addEventListener("click", function() {
+    let pwd = document.getElementById("password");
+    if (pwd.type === "password") {
+        pwd.type = "text";
+        this.classList.remove("fa-eye");
+        this.classList.add("fa-eye-slash");
+    } else {
+        pwd.type = "password";
+        this.classList.remove("fa-eye-slash");
+        this.classList.add("fa-eye");
+    }
+});
+</script>
+
+
+
+</html>

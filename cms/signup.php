@@ -204,7 +204,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <title>Daftar Akun CMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="signup.css" rel="stylesheet">
-  <link rel="shortcut icon" href="images/button/logo2.png">
+  <link rel="shortcut icon" href="/icon/button/logo2.png">
 </head>
 <body>
     <div class="header">
