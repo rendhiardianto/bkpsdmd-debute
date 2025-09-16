@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Online Attendance – Real-time Photo Upload</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 800px; margin: 2rem auto; padding: 1rem; }
+    video, canvas { width: 100%; max-width: 480px; border-radius: 8px; background: #000; }
+    .controls { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .status { margin-top: 8px; color: #444; }
+    .preview { margin-top: 12px; }
+    input, button {
+      padding: 8px 12px; border-radius: 6px; border: 1px solid #ccc;
+    }
+    button { background: #f6f6f6; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Online Attendance — Real-time Photo Upload</h1>
+  <label>
+    Name or ID:
+    <input id="nameInput" type="text" placeholder="Your name or ID" />
+  </label>
+
+  <div style="margin-top:12px">
+    <video id="video" autoplay playsinline></video>
+    <canvas id="canvas" style="display:none"></canvas>
+  </div>
+
+  <div class="controls">
+    <button id="startBtn">Start Camera</button>
+    <button id="captureBtn" disabled>Capture & Upload</button>
+    <button id="stopBtn" disabled>Stop Camera</button>
+  </div>
+
+  <div class="status" id="status">Status: idle</div>
+  <div class="preview" id="previewArea"></div>
+
+  <script>
+    const startBtn = document.getElementById('startBtn');
+    const captureBtn = document.getElementById('captureBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const video = document.getElementById('video');
+    const canvas = document.getElementById('canvas');
+    const status = document.getElementById('status');
+    const previewArea = document.getElementById('previewArea');
+    const nameInput = document.getElementById('nameInput');
+
+    let stream = null;
+
+    function log(msg) {
+      status.textContent = 'Status: ' + msg;
+    }
+
+    async function startCamera() {
+      try {
+        stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
+        video.srcObject = stream;
+        captureBtn.disabled = false;
+        stopBtn.disabled = false;
+        startBtn.disabled = true;
+        log('camera started');
+      } catch (err) {
+        console.error(err);
+        log('camera error: ' + err.message);
+        alert('Cannot start camera: ' + err.message);
+      }
+    }
+
+    function stopCamera() {
+      if (stream) {
+        stream.getTracks().forEach(t => t.stop());
+        video.srcObject = null;
+        stream = null;
+      }
+      captureBtn.disabled = true;
+      stopBtn.disabled = true;
+      startBtn.disabled = false;
+      log('camera stopped');
+    }
+
+    function getTimestamp() {
+      return new Date().toISOString();
+    }
+
+    function showPreview(imgUrl, meta) {
+      previewArea.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = imgUrl;
+      img.style.maxWidth = '200px';
+      img.style.borderRadius = '6px';
+      img.style.display = 'block';
+      previewArea.appendChild(img);
+      const p = document.createElement('div');
+      p.innerHTML = `<small>${meta}</small>`;
+      previewArea.appendChild(p);
+    }
+
+    function captureToBlob() {
+      const w = video.videoWidth;
+      const h = video.videoHeight;
+      canvas.width = w;
+      canvas.height = h;
+      const ctx = canvas.getContext('2d');
+      ctx.drawImage(video, 0, 0, w, h);
+      return new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', 0.85));
+    }
+
+    async function uploadAttendance() {
+      if (!stream) { alert('Camera is not started'); return; }
+      const name = nameInput.value.trim();
+      if (!name) { alert('Please enter Name or ID'); nameInput.focus(); return; }
+
+      log('capturing photo...');
+      const blob = await captureToBlob();
+      if (!blob) { log('capture failed'); return; }
+
+      const timestamp = getTimestamp();
+
+      // optional geolocation
+      let lat = null, lng = null;
+      try {
+        const pos = await new Promise((res, rej) => {
+          navigator.geolocation.getCurrentPosition(res, rej, { timeout: 5000 });
+        });
+        lat = pos.coords.latitude;
+        lng = pos.coords.longitude;
+      } catch (e) {
+        console.warn('geolocation not available or denied', e);
+      }
+
+      const fd = new FormData();
+      fd.append('name', name);
+      fd.append('timestamp', timestamp);
+      if (lat !== null) fd.append('lat', lat);
+      if (lng !== null) fd.append('lng', lng);
+      fd.append('photo', blob, `photo_${Date.now()}.jpg`);
+
+      log('uploading...');
+      try {
+        const resp = await fetch('upload.php', { method: 'POST', body: fd });
+        const data = await resp.json();
+        if (resp.ok && data.success) {
+          log('uploaded ✓');
+          const imgUrl = URL.createObjectURL(blob);
+          showPreview(imgUrl, `Name: ${name} — ${timestamp}` +
+            (lat ? ` — location: ${lat.toFixed(5)},${lng.toFixed(5)}` : ''));
+        } else {
+          log('upload failed');
+          alert('Upload failed: ' + (data?.error || resp.statusText));
+        }
+      } catch (err) {
+        console.error(err);
+        log('upload error');
+        alert('Upload error: ' + err.message);
+      }
+    }
+
+    startBtn.addEventListener('click', startCamera);
+    stopBtn.addEventListener('click', stopCamera);
+    captureBtn.addEventListener('click', uploadAttendance);
+  </script>
+</body>
+</html>

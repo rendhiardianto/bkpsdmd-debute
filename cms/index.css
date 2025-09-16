@@ -28,9 +28,18 @@
    font-family: SegoeUI;
    src: url("../file/Font/segoeui.ttf");
 }
-body {
-	margin: 0;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* full screen height */
+}
+
 #myVideo {
   position: fixed;
   top: 0;
@@ -83,16 +92,16 @@ a {
 }
 
 .flex-container {
+	flex: 1;
   	display: flex;
-	margin: auto;
-	margin-top: 80px;
-	align-items: center;
-	
+   justify-content: center;
+   align-items: center;  
+   gap: 20px;
+   padding: 20px;
 }
 
-@media screen and (max-width:600px) {
+@media screen and (max-width:800px) {
 	.flex-container{
-		margin-top: 70px;
 	}
 	.flex-item-left {
 		display: none;
@@ -147,7 +156,7 @@ a {
 	font-size: 40px;
 	padding-bottom: 10px;
 }
-@media screen and (max-width:600px) {
+@media screen and (max-width:800px) {
 	.flex-item-right h2 {
 		font-size: 25px;
 	}
@@ -253,4 +262,9 @@ a {
 	font-family: Raleway-Medium;
 	text-align: center;
 	font-size: 15x;
+}
+@media screen and (max-width:800px) {
+	.footer {
+		font-size: 12px;
+	}
 }

@@ -17,6 +17,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC");
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - News</title>
   <meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
   <link rel="shortcut icon" href="../images/button/logo2.png">

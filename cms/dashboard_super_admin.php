@@ -21,7 +21,7 @@ $user = $result->fetch_assoc();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Super Admin Dashboard</title>
   <link href="dashboard_super_admin.css" rel="stylesheet" type="text/css">
   <meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
@@ -99,27 +99,32 @@ $user = $result->fetch_assoc();
 
     <div class="flex-item-main">
       <p><a href="cms_admin_authority/add_user.php">
-        <img src="../icon/button/add_user.png" width="100"></a><br>ADD USER</p>
+        <img src="../icon/button/add_user.png"></a><br>ADD USER</p>
     </div>
 
     <div class="flex-item-main">
       <p><a href="cms_admin_authority/dashboard_admin_list.php">
-        <img src="../icon/button/profil.png" width="100"></a><br>CMS USER</p>
+        <img src="../icon/button/profil.png" ></a><br>CMS USER</p>
     </div>
 
     <div class="flex-item-main">
       <p><a href="pengumuman/dashboard_pengumuman.php">
-        <img src="../icon/button/announcement.png" width="100"></a><br>PENGUMUMAN</p>
+        <img src="../icon/button/announcement.png" ></a><br>PENGUMUMAN</p>
     </div>
 
     <div class="flex-item-main">
       <p><a href="berita/admin_news.php">
-        <img src="../icon/button/news.png" width="100"></a><br>BERITA</p>
+        <img src="../icon/button/news.png" ></a><br>BERITA</p>
     </div>
 
     <div class="flex-item-main">
       <p><a href="infoGrafis/admin_infoGrafis.php">
-        <img src="../icon/button/graphics.png" width="100"></a><br>INFO GRAFIS</p>
+        <img src="../icon/button/graphics.png" ></a><br>INFOGRAFIS</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="infoGrafis/admin_infoGrafis.php">
+        <img src="../icon/button/transparansi.png"></a><br>TRANSPARANSI</p>
     </div>
 
 </div>

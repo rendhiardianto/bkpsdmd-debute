@@ -30,13 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Verifikasi NIP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifikasi NIP Akun CMS</title>
     <link href="verify_nip.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <div class="header">
         <div class="logo">
-            <a href="index.php" target="_blank"><img src="../icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
+            <a href="index.php"><img src="../icon/BKPLogo3.png" width="150" id="bkpsdmdLogo" alt="Logo BKPSDMD"></a>	
         </div>
     </div>
 

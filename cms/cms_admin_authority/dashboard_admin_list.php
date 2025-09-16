@@ -57,6 +57,7 @@ $user = $profileResult->fetch_assoc();
 <head>
   <meta charset="UTF-8">
   <title>Dashboard - CMS Users </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="dashboard_admin_list.css" rel="stylesheet" type="text/css">
 </head>
 <body>
@@ -88,7 +89,7 @@ $user = $profileResult->fetch_assoc();
     <table border="1" width="100%" cellspacing="0" cellpadding="8" style="background:#fff; border-collapse:collapse; text-align:center;">
       <tr style="background:#3498db; color:white;">
         <th>ID</th>
-        <th>Full Name</th>
+        <th>Nama Lengkap</th>
         <th>NIP</th>
         <th>Email</th>
         <th>Role</th>

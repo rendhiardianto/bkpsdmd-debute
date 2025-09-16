@@ -32,33 +32,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Edit News</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin:20px; }
-    form { max-width:600px; }
-    input, textarea, select { width:100%; padding:10px; margin-bottom:15px; }
-    button { padding:10px 15px; background:#003366; color:white; border:none; border-radius:4px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Berita</title>
+  <link rel="stylesheet" href="edit_news.css">
 </head>
 <body>
-
-<h2>Edit News</h2>
+  <div class="header">
+    <div class="navbar">
+      <a href="admin_news.php" class="buttonBack" style="text-decoration: none;">&#10094; Kembali</a>
+      <!--<a href="admin_news.php" class="buttonBack">&#10094; Kembali</a>-->
+    </div>
+    <div class="roleHeader">
+      <h1>Edit Berita</h1>
+    </div>
+  </div>
+<div class="form-box">
 <form action="" method="post" enctype="multipart/form-data">
-  <label>Title</label>
+  <label>Judul</label>
   <input type="text" name="title" value="<?php echo $news['title']; ?>" required>
 
-  <label>Content</label>
-  <textarea name="content" rows="8" required><?php echo $news['content']; ?></textarea>
+  <label>Konten</label>
+  <textarea name="content" rows="12" required><?php echo $news['content']; ?></textarea>
 
-  <label>Category</label>
+  <label>Kategori</label>
   <input type="text" name="category" value="<?php echo $news['category']; ?>" required>
 
-  <label>Image</label>
+  <label>Thumbnail</label>
   <input type="file" name="image">
   <p>Current: <img src="<?php echo $news['image']; ?>" width="120"></p>
 
-  <button type="submit">Update</button>
+  <button type="submit">Simpan</button>
 </form>
-
+</div>
 </body>
 </html>

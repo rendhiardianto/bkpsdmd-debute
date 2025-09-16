@@ -1,8 +1,5 @@
 <?php include "../db.php";
-
 require_once("../auth.php");
-
-session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = $conn->real_escape_string($_POST['fullname']);
@@ -41,6 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard - Add User</title>
   
   <link href="add_user.css" rel="stylesheet">

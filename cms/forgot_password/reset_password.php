@@ -24,6 +24,7 @@ if (isset($_GET['token'])) {
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reset Password</title>
   <style>
     body { font-family: Arial; background:#f4f6f9; padding:30px; }

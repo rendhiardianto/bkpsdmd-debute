@@ -76,18 +76,18 @@ while ($row = $result->fetch_assoc()) {
 		<div class="dropdown">
 			<button onclick="toggleDropdown('menu3')" class="dropbtn">TRANSPARANSI <i class="fa fa-caret-down"></i></button>
 		  <div id="menu3" class="dropdown-content">
-			<a href="transparansi.html#renstra">Perbup</a>
-			<a href="transparansi.html#renstra">Rencana Stategis</a>
-			<a href="transparansi.html#renja">Rencana Kerja</a>
-			<a href="transparansi.html#iku">Indikator Kinerja Utama</a>
-			<a href="transparansi.html#casscad">Casscading</a>
-			<a href="transparansi.html#perkin">Perjanjian Kinerja</a>
-			<a href="transparansi.html#reaksi">Rencana Aksi</a>
-			<a href="transparansi.html#lapkin">Laporan Kinerja</a>
-			<a href="transparansi.html#sop">Standar Operasional Prosedur</a>
-			<a href="transparansi.html#rapbd">RAPBD</a>
-			<a href="transparansi.html#apbd">APBD</a>
-			<a href="transparansi.html#lppd">LPPD</a>
+			<a href="transparansi/perbup.html">Perbup</a>
+			<a href="transparansi/renstra.html">Rencana Stategis</a>
+			<a href="transparansi/renja.html">Rencana Kerja</a>
+			<a href="transparansi/iku.html">Indikator Kinerja Utama</a>
+			<a href="transparansi/casscad.html">Casscading</a>
+			<a href="transparansi/perkin.html">Perjanjian Kinerja</a>
+			<a href="transparansi/reaksi.html">Rencana Aksi</a>
+			<a href="transparansi/lapkin.html">Laporan Kinerja</a>
+			<a href="transparansi/sop.html">Standar Operasional Prosedur</a>
+			<a href="transparansi/rapbd.html">RAPBD</a>
+			<a href="transparansi/apbd.html">APBD</a>
+			<a href="transparansi/lppd.html">LPPD</a>
 		  </div>
 		</div>
 		
@@ -280,6 +280,7 @@ while ($row = $result->fetch_assoc()) {
 		<div class="maps-rekap">
 		
 		</div>-->
+	</div>
 </div>
 <!------------------- FOOTER ----------------------------------->	
 	
@@ -302,7 +303,7 @@ while ($row = $result->fetch_assoc()) {
 			<img src="icon/sosmed/WA.png" alt="Logo WA" width="30px" style="vertical-align:middle"></a> 
 			+62851 5999 7813</p>
 	  
-		<p><a href="https://wa.me/6285159997813" target="_blank" class="em">
+		<p><a href="bkd.merangin@gmail.com" target="_blank" class="em">
 			<img src="icon/sosmed/EM.png" alt="Logo Email" width="30px" style="vertical-align:middle"></a> 
 			bkd.merangin@gmail.com</p>
   </div>

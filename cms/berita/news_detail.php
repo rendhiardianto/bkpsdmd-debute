@@ -1,56 +1,27 @@
 <?php
 include "../db.php";
 
-if (!isset($_GET['id'])) {
-    // No id → redirect back to news list
-    header("Location: news.php");
+// Check for slug in URL
+if (isset($_GET['slug']) && $_GET['slug'] !== '') {
+    $slug = $conn->real_escape_string($_GET['slug']);
+    $sql  = "SELECT * FROM news WHERE slug = '$slug' LIMIT 1";
+    $result = $conn->query($sql);
+
+    if ($result && $result->num_rows > 0) {
+        $news = $result->fetch_assoc();
+    } else {
+        // No news found with this slug
+        http_response_code(404);
+        echo "<h1>404 - Berita Tidak Ditemukan</h1>";
+        exit;
+    }
+} else {
+    // No slug provided
+    http_response_code(404);
+    echo "<h1>404 - Berita Tidak Ditemukan</h1>";
     exit;
 }
-
-$id = intval($_GET['id']);
-$result = $conn->query("SELECT * FROM news WHERE id=$id");
-
-if ($result->num_rows == 0) {
-    // News not found → show 404 page
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Berita Tidak Ditemukan</title>
-  <style>
-        body { 
-          font-family: Arial, sans-serif; 
-          background:#f5f5f5; 
-          margin:0; padding:0; 
-          display:flex; justify-content:center; align-items:center; 
-          height:100vh; text-align:center; 
-        }
-        .error-box {
-          background:white; padding:40px; border-radius:8px; 
-          box-shadow:0 2px 8px rgba(0,0,0,0.2); 
-        }
-        h1 { font-size:48px; margin:0; color:#cc0000; }
-        p { font-size:16px; color:#555; }
-        a {
-          display:inline-block; margin-top:20px; 
-          text-decoration:none; background:#003366; 
-          color:white; padding:10px 20px; border-radius:5px;
-        }
-        a:hover { background:#0055aa; }
-  </style>
-</head>
-<body>
-  <div class="error-box">
-    <h1>404</h1>
-    <p>Maaf, artikel berita yang anda cari tidak tersedia.</p>
-    <a href="../news.php">Back to News</a>
-  </div>
-</body>
-</html>
-
-<?php exit;} $news = $result->fetch_assoc(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,9 +36,9 @@ if ($result->num_rows == 0) {
 <div class="article">
   <h1><?php echo $news['title']; ?></h1>
   <div class="meta">
-    Diunggah oleh: <?php echo htmlspecialchars($news['created_by']); ?> , 
-    <?php echo date("j F Y, H:i", strtotime($news['created_at'])); ?> 
-   | Category: <?php echo $news['category']; ?></div>
+    Dipublish oleh: <?php echo htmlspecialchars($news['created_by']); ?> | Category: <?php echo $news['category']; ?>
+    <br><br><?php echo date("j F Y, H:i", strtotime($news['created_at'])); ?> </div>
+   
   <img src="<?php echo $news['image']; ?>" alt="">
   <p><?php echo nl2br($news['content']); ?></p>
 </div>

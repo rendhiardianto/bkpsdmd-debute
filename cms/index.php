@@ -120,6 +120,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['resend'])) {
 <html hreflang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
 <title>Sign in into CMS BKPSDMD</title>
 <link rel="shortcut icon" href="images/button/logo2.png">

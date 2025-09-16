@@ -65,6 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
   <div class="form-box">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <h2>Add Announcement</h2>
     <form method="POST" enctype="multipart/form-data">
       <input type="text" name="title" placeholder="Title" required>

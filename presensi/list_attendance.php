@@ -1,0 +1,119 @@
+// PHP script for admin list (list_attendance.php):
+<?php
+header('Content-Type: application/json');
+$dbHost='localhost';$dbName='attendance_db';$dbUser='db_user';$dbPass='db_pass';
+try{
+  $pdo=new PDO("mysql:host={$dbHost};dbname={$dbName};charset=utf8mb4",$dbUser,$dbPass,[PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
+  $stmt=$pdo->query('SELECT id,name,timestamp_iso,lat,lng,photo_path FROM attendance ORDER BY created_at DESC');
+  $rows=$stmt->fetchAll(PDO::FETCH_ASSOC);
+  echo json_encode(['records'=>$rows]);
+}catch(Exception $e){
+  http_response_code(500);
+  echo json_encode(['error'=>$e->getMessage()]);
+}
+?>
+
+// The AdminPage React component fetches from list_attendance.php and can download CSV of all records.
+// Place ReactAttendance and AdminPage in your React app. Configure PHP endpoints accordingly.
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Attendance Records – Admin</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 1000px; margin: 2rem auto; padding: 1rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: left; }
+    th { background: #f2f2f2; }
+    button {
+      padding: 8px 12px; border-radius: 6px; border: 1px solid #ccc;
+      background: #f6f6f6; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>Attendance Records (Admin)</h1>
+  <button id="downloadBtn">Download CSV</button>
+  <div id="status" style="margin-top: 8px;">Loading...</div>
+  <table id="recordsTable" style="display:none">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Timestamp</th>
+        <th>Lat</th>
+        <th>Lng</th>
+        <th>Photo</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const table = document.getElementById('recordsTable');
+    const tbody = table.querySelector('tbody');
+    const downloadBtn = document.getElementById('downloadBtn');
+    let records = [];
+
+    async function loadRecords() {
+      statusEl.textContent = 'Loading...';
+      try {
+        const resp = await fetch('list_attendance.php');
+        const data = await resp.json();
+        if (resp.ok && data.success && Array.isArray(data.records)) {
+          records = data.records;
+          renderTable();
+        } else {
+          statusEl.textContent = 'Error loading records';
+        }
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = 'Fetch error';
+      }
+    }
+
+    function renderTable() {
+      tbody.innerHTML = '';
+      records.forEach(r => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${r.id}</td>
+          <td>${r.name}</td>
+          <td>${r.timestamp_iso}</td>
+          <td>${r.lat || ''}</td>
+          <td>${r.lng || ''}</td>
+          <td><a href=\"${r.photo_path}\" target=\"_blank\">View</a></td>
+          <td>${r.created_at}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      table.style.display = '';
+      statusEl.textContent = `Loaded ${records.length} records.`;
+    }
+
+    function downloadCSV() {
+      if (!records.length) { alert('No records to download'); return; }
+      const header = 'ID,Name,Timestamp,Lat,Lng,Photo,Created\\n';
+      const rows = records.map(r =>
+        `${r.id},\"${r.name}\",${r.timestamp_iso},${r.lat || ''},${r.lng || ''},${r.photo_path},${r.created_at}`
+      );
+      const csv = header + rows.join('\\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'attendance_records.csv';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    downloadBtn.addEventListener('click', downloadCSV);
+    loadRecords();
+  </script>
+</body>
+</html>
+

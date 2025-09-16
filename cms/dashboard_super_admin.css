@@ -123,11 +123,7 @@ body {
 * {
     box-sizing: border-box;
 }
-@media screen and (max-width: 600px) {
-  .rightSide {   
-    flex-direction: column;
-  }
-}
+
 
 .rightSide {
     background-color: #ebebeb;
@@ -165,6 +161,25 @@ body {
 .flex-item-main img:hover{
     filter: contrast(50%);
     transition: 0.3s;
+}
+.flex-item-main img{
+  width: 100px;
+}
+
+@media screen and (max-width: 600px) {
+  .rightSide {   
+    padding: 0px;
+  }
+  .rightSide > div {   
+    width: 150px;
+    padding: 0px;
+  }
+  .flex-item-main img {
+    width: 50px;
+  }
+  .flex-item-main:hover{  
+    width: 170px;
+}
 }
 
 .top-bar {
@@ -238,4 +253,9 @@ button:hover {
 	font-family: Raleway-Medium;
 	text-align: center;
 	font-size: 15x;
+}
+@media screen and (max-width:600px) {
+	.footer {
+		font-size: 12px;
+	}
 }

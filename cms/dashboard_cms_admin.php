@@ -34,7 +34,7 @@ $user = $result->fetch_assoc();
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CMS Admin Dashboard</title>
   <link href="dashboard_cms_admin.css" rel="stylesheet" type="text/css">
   <meta name="google-site-verification" content="e4QWuVl6rDrDmYm3G1gQQf6Mv2wBpXjs6IV0kMv4_cM" />
@@ -120,7 +120,7 @@ $user = $result->fetch_assoc();
 
     <div class="flex-item-main">
       <p><a href="infoGrafis/admin_infoGrafis.php">
-        <img src="../icon/button/graphics.png" width="100"></a><br>INFO GRAFIS</p>
+        <img src="../icon/button/graphics.png" width="100"></a><br>INFOGRAFIS</p>
     </div>
       
     <!--<div class="top-bar">

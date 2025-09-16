@@ -2,40 +2,36 @@
 /* CSS Document */
 @font-face {
    font-family: Trebuchet;
-   src: url("file/Font/Trebuchet.ttf");
+   src: url("../file/Font/Trebuchet.ttf");
 }
 @font-face {
    font-family:Bahnschrift;
-   src: url("file/Font/Bahnschrift.ttf");
+   src: url("../file/Font/Bahnschrift.ttf");
 }
 @font-face {
    font-family: BebasNeue;
-   src: url("file/Font/BebasNeue.otf");
+   src: url("../file/Font/BebasNeue.otf");
 }
 @font-face {
    font-family: Raleway-Light;
-   src: url("file/Font/Raleway-Light.ttf");
+   src: url("../file/Font/Raleway-Light.ttf");
 }
 @font-face {
    font-family: Raleway-Medium;
-   src: url("file/Font/Raleway-Medium.ttf");
+   src: url("../file/Font/Raleway-Medium.ttf");
 }
 @font-face {
    font-family: FreeHand;
-   src: url("file/Font/FreeHand.ttf");
+   src: url("../file/Font/FreeHand.ttf");
 }
 @font-face {
    font-family: SegoeUI;
-   src: url("file/Font/segoeui.ttf");
+   src: url("../file/Font/segoeui.ttf");
 }
-
 body {
 	margin: 0;
 }
 /* =================================== TOP NAV =========================================*/
-.header {
-
-}
 .topnav {
   position: sticky;
   top: 0;
@@ -148,6 +144,7 @@ body {
     position: relative;
     z-index: -1;
   }
+  
   .navRight a:not(:empty), .dropdown .dropbtn { 
 	  display: none;
 	}
@@ -163,6 +160,9 @@ body {
   display: inline;
   padding: 21px 21px;
   }  
+}
+
+@media screen and (max-width: 1050px) {
   .topnav.responsive {
 	  position: sticky;
 	  float: left;
@@ -200,141 +200,23 @@ body {
   display: block;
   }
 }
-/* ============================================ Layanan BKD ==============================*/
-.layananBKD {
-	background-color: #ebebeb;
-	overflow: hidden;
-	text-align: center;
-	padding: 20px;
-}
-.layananBKD h1 {
-	font-family: Bahnschrift;
-	text-align: center;
-	font-size: 40px;
-	color: #0077b6;
-	margin-top: 0px;
-}
-.layananBKD .layananKPG {
-	margin-top: 20px;
-}
-.layananBKD .layananPSDM {
-	margin-top: 50px;
-}
-.LogoBKD {
-	width: 200px;
+/* ============================================ CONTENT ==============================*/
+header {
+    background:#0096c7;
+    color:white;
+    padding:10px;
+    text-align:center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 600px) {
-	.layananBKD h1{
-		font-family: Bahnschrift;
-		text-align: center;
-		font-size: 25px;
-		color: #0077b6;
-	}
-	.LogoBKD {
-		width: 150px;
-	}
-}
-
-/* ============================================ Layanan BKN ==============================*/
-.layananBKN {
-	background-color: #ebebeb;
-	overflow: hidden;
+.coomingSoon {
 	text-align: center;
-	padding: 20px;
-}
-.layananBKN h1{
-	font-family: Bahnschrift;
-	text-align: center;
-	font-size: 40px;
+   font-family: 'Courier New', Courier, monospace;
+	font-size: 50px;
+	font-family: Segoe UI;
 	color: #0077b6;
 }
-.LogoBKN {
-	width: 200px;
-}
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 600px) {
-	.layananBKN h1{
-		font-family: Bahnschrift;
-		text-align: center;
-		font-size: 30px;
-		color: #0077b6;
-	}
-	.LogoBKN {
-		width: 150px;
-	}
-}
-
-/* ============================================ FLEX CONTAINER ==============================*/
-* {
-  box-sizing: border-box;
-}
-
-.flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    text-align: center;
-    justify-content: center;
-    background-color: #ebebeb;
-    align-content: space-evenly;
-}
-.flex-container > div {
-    margin: 10px;
-    background-color: #dddddd;
-    color: #023e8a;
-    line-height: 20px;
-    font-family: trebuchet;
-    font-size: 20px;
-    margin: 20px;
-    border-radius: 12px;
-    box-shadow: 0px 0px 10px grey;
-  }
-.flex-container > div:hover {
-    background-color:  rgb(240, 240, 240);
-    box-shadow: 0px 0px 15px rgb(255, 255, 255);
-    
-    transition: 0.3s;
-}
-.flex-item-main {
-    flex: 20%;
-    padding: 5px;
-}
-.flex-item-main img {
-  width: 100px;
-}
-.layananBKN img {
-  width: 150px;
-}
-.flex-item-main img:hover {
-    filter: contrast(50%);
-    transition: 0.3s;
-}
-.flex-item-main sub {
-	color: rgb(41, 40, 40);
-	line-height: 0.1;
-	font-size: 15px;
-	padding: 5px;
-}
-
-/* Responsive layout - makes a one column-layout instead of a two-column layout */
-@media (max-width: 600px) {
-  .flex-container > div {
-    font-size: 15px;
-  }
-  .flex-item-main {
-    flex: 10%;
-    padding: 5px;
-  }
-  
-  .flex-item-main img {
-    width: 80px;
-  }
-  .layananBKN img {
-  width: 100px;
-  }
-}
 /* =================================== FOOTER =========================================*/
 * {
 	box-sizing: border-box;
@@ -362,6 +244,7 @@ body {
 	margin: auto;
     display: block;
 }
+
 .second {
  	width: 35%;
 	text-align: left;
