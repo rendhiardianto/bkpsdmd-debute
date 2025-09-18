@@ -137,7 +137,7 @@ $user = $result->fetch_assoc();
     </div>
 
     <div class="flex-item-main">
-      <p><a href="infoGrafis/admin_infoGrafis.php">
+      <p><a href="transparansi/dashboard_transparansi.php">
         <img src="../icon/button/transparansi.png"></a><br>TRANSPARANSI</p>
     </div>
       

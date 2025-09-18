@@ -1,3 +1,18 @@
+<?php
+include "../cms/db.php";
+
+// Directly set the value you want:
+$tipe_dokumen = 'RAPBD';
+
+// Query only those rows:
+$stmt = $conn->prepare("SELECT * FROM transparansi WHERE tipe_dokumen = ?");
+$stmt->bind_param("s", $tipe_dokumen);
+$stmt->execute();
+$result = $stmt->get_result();
+
+?>
+
+
 <!doctype html>
 <html>
 <head>
@@ -15,7 +30,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 <link href="../headerFooter.css" rel="stylesheet" type="text/css">
-<link href="perbup.css" rel="stylesheet" type="text/css">
+<link href="style.css" rel="stylesheet" type="text/css">
 
 <title>Transparansi - BKPSDMD Kabupaten Merangin</title>
 <link rel="shortcut icon" href="../icon/IconWeb.png">
@@ -54,18 +69,18 @@
 		<div class="dropdown">
 			<button onclick="toggleDropdown('menu3')" class="dropbtn">TRANSPARANSI <i class="fa fa-caret-down"></i></button>
 		  <div id="menu3" class="dropdown-content">
-			<a href="perbup.html">Perbup</a>
-			<a href="renstra.html">Rencana Stategis</a>
-			<a href="renja.html">Rencana Kerja</a>
-			<a href="iku.html">Indikator Kinerja Utama</a>
-			<a href="casscad.html">Casscading</a>
-			<a href="perkin.html">Perjanjian Kinerja</a>
-			<a href="reaksi.html">Rencana Aksi</a>
-			<a href="lapkin.html">Laporan Kinerja</a>
-			<a href="sop.html">Standar Operasional Prosedur</a>
-			<a href="rapbd.html">RAPBD</a>
-			<a href="apbd.html">APBD</a>
-			<a href="lppd.html">LPPD</a>
+			<a href="perbup.php">Perbup</a>
+			<a href="renstra.php">Rencana Stategis</a>
+			<a href="renja.php">Rencana Kerja</a>
+			<a href="iku.php">Indikator Kinerja Utama</a>
+			<a href="casscad.php">Casscading</a>
+			<a href="perkin.php">Perjanjian Kinerja</a>
+			<a href="reaksi.php">Rencana Aksi</a>
+			<a href="lapkin.php">Laporan Kinerja</a>
+			<a href="sop.php">Standar Operasional Prosedur</a>
+			<a href="rapbd.php">RAPBD</a>
+			<a href="apbd.php">APBD</a>
+			<a href="lppd.php">LPPD</a>
 		  </div>
 		</div>
 		
@@ -87,8 +102,9 @@
 </div>
 	
 <!------------------- CONTENT ----------------------------------->
-<h1 style="text-align: center; margin-top:30px;">Peraturan Bupati (PERBUP)</h1>
+<h1 style="text-align: center; margin-top:30px;">Rancangan Anggaran Pendapatan dan Belanja Daerah (RAPBD)</h1>
 
+<?php while ($row = $result->fetch_assoc()): ?>
 <table style="overflow-x:auto; width: 80%;">
 	<tr>
 		<th style="text-align:center; width: 20%;">Tipe Dokumen</th>
@@ -98,33 +114,16 @@
 		<th style="text-align:center; width: 20%;">Unduh</th>
 	</tr>
 	<tr>
-		<td>Peraturan Bupati (PERBUP)</td>
-		<td style="max-width: 100%;">Standar Kompetensi Jabatan Aparatur Sipil Negara (ASN) di Lingkungan Pemerintah Kabupaten Merangin</td>
-		<td>No. 12</td>
-		<td>2023</td>
-		<td style="text-align:center;"><a href="dokumen/1.2.1 PERBUP NO 12 TH 2023 TTG STANDAR KOMPETENSI JABATAN.pdf" class="unduh" download><button class="btn"><i class="fa fa-download"></i> Unduh</button></a></td>
+		<td><?= htmlspecialchars($row['tipe_dokumen']) ?></td>
+		<td><?= htmlspecialchars($row['judul']) ?></td>
+		<td><?= htmlspecialchars($row['nomor']) ?></td>
+		<td><?= htmlspecialchars($row['tahun']) ?></td>
+		<td><a href="../cms/transparansi/uploads/files/<?= htmlspecialchars($row['attachment']) ?>" class="unduh" download><button class="btn"><i class="fa fa-download"></i> Unduh</button></a></td>
 	</tr>
+	
 </table>
-<iframe src="dokumen/1.2.1 PERBUP NO 12 TH 2023 TTG STANDAR KOMPETENSI JABATAN.pdf" width="80%" height="500px"></iframe>
-
-<table style="overflow-x:auto; width: 80%;">
-	<tr>
-		<th style="text-align:center; width: 20%;">Tipe Dokumen</th>
-		<th style="text-align:center; width: 50%;">Judul</th>
-		<th style="text-align:center;">Nomor</th>
-		<th style="text-align:center;">Tahun</th>
-		<th style="text-align:center; width: 20%;">Unduh</th>
-	</tr>	
-	<tr>
-		<td>Peraturan Bupati (PERBUP)</td>
-		<td style="max-width: 100%;">Kode Etik Pegawai Negeri Sipil (PNS) di Lingkungan Pemerintah Kabupaten Merangin</td>
-		<td>No. 62</td>
-		<td>2018</td>
-		<td style="text-align:center;"><a href="dokumen/PERBUP No.62 TAHUN 2018 TTG. KODE ETIK PNS DI LINGKUNGN PEMERINTAH KABUPATEN MERANGIN02.pdf" class="unduh" download><button class="btn"><i class="fa fa-download"></i> Unduh</button></a></td>
-	</tr>
-</table>
-<iframe src="dokumen/PERBUP No.62 TAHUN 2018 TTG. KODE ETIK PNS DI LINGKUNGN PEMERINTAH KABUPATEN MERANGIN02.pdf" width="80%" height="500px"></iframe>
-
+<iframe src="../cms/transparansi/uploads/files/<?= htmlspecialchars($row['attachment']) ?>" width="80%" height="500px"></iframe>
+<?php endwhile; ?>
 
 	
 <!------------------- FOOTER ----------------------------------->

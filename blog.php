@@ -61,18 +61,18 @@ $result = $conn->query("SELECT * FROM blog ORDER BY created_at DESC LIMIT 10");
 		<div class="dropdown">
 			<button onclick="toggleDropdown('menu3')" class="dropbtn">TRANSPARANSI <i class="fa fa-caret-down"></i></button>
 		  <div id="menu3" class="dropdown-content">
-			<a href="transparansi/perbup.html">Perbup</a>
-			<a href="transparansi/renstra.html">Rencana Stategis</a>
-			<a href="transparansi/renja.html">Rencana Kerja</a>
-			<a href="transparansi/iku.html">Indikator Kinerja Utama</a>
-			<a href="transparansi/casscad.html">Casscading</a>
-			<a href="transparansi/perkin.html">Perjanjian Kinerja</a>
-			<a href="transparansi/reaksi.html">Rencana Aksi</a>
-			<a href="transparansi/lapkin.html">Laporan Kinerja</a>
-			<a href="transparansi/sop.html">Standar Operasional Prosedur</a>
-			<a href="transparansi/rapbd.html">RAPBD</a>
-			<a href="transparansi/apbd.html">APBD</a>
-			<a href="transparansi/lppd.html">LPPD</a>
+			<a href="transparansi/perbup.php">Perbup</a>
+			<a href="transparansi/renstra.php">Rencana Stategis</a>
+			<a href="transparansi/renja.php">Rencana Kerja</a>
+			<a href="transparansi/iku.php">Indikator Kinerja Utama</a>
+			<a href="transparansi/casscad.php">Casscading</a>
+			<a href="transparansi/perkin.php">Perjanjian Kinerja</a>
+			<a href="transparansi/reaksi.php">Rencana Aksi</a>
+			<a href="transparansi/lapkin.php">Laporan Kinerja</a>
+			<a href="transparansi/sop.php">Standar Operasional Prosedur</a>
+			<a href="transparansi/rapbd.php">RAPBD</a>
+			<a href="transparansi/apbd.php">APBD</a>
+			<a href="transparansi/lppd.php">LPPD</a>
 		  </div>
 		</div>
 		
