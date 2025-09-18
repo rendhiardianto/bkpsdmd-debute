@@ -8,7 +8,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-65T4XSDM2Q"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -102,7 +102,9 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
   <div class="news-list">
     <?php while ($row = $result->fetch_assoc()): ?>
       <div class="news-item">
+
         <img src="cms/berita/<?php echo $row['image']; ?>" alt="News">
+
         <div class="news-content">
           <h2><?php echo $row['title']; ?></h2>
           <p><?php echo substr($row['content'], 0, 120) . "..."; ?></p>
@@ -119,10 +121,10 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
     <h3>Berita Terkini</h3>
     <ul>
       <?php
-      $latest = $conn->query("SELECT id, title FROM news ORDER BY created_at DESC LIMIT 5");
+      $latest = $conn->query("SELECT slug, title FROM news ORDER BY created_at DESC LIMIT 5");
       while ($n = $latest->fetch_assoc()):
       ?>
-        <li><a href="cms/berita/news_detail.php?id=<?php echo $n['id']; ?>"><?php echo $n['title']; ?></a></li>
+        <li><a href="cms/berita/news_detail.php?slug=<?php echo $n['slug']; ?>" target="_blank"><?php echo $n['title']; ?></a></li>
       <?php endwhile; ?>
     </ul>
 
@@ -132,8 +134,7 @@ $result = $conn->query("SELECT * FROM news ORDER BY created_at DESC LIMIT 10");
       $cats = $conn->query("SELECT DISTINCT category FROM news");
       while ($c = $cats->fetch_assoc()):
       ?>
-        <li><a href="news.php?category=<?php echo urlencode($c['category']); ?>">
-          <?php echo $c['category']; ?></a></li>
+        <li><a href="news.php?category=<?php echo urlencode($c['category']); ?>" target="_blank"> <?php echo $c['category']; ?></a></li>
       <?php endwhile; ?>
     </ul>
   </div>

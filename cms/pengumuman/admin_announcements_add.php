@@ -54,6 +54,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65T4XSDM2Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-65T4XSDM2Q');
+  </script>
   <title>Add Announcement</title>
   <style>
     body { font-family: Arial; background:#f4f6f9; padding:30px; }

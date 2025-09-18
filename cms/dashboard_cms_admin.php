@@ -33,6 +33,14 @@ $user = $result->fetch_assoc();
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-65T4XSDM2Q"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-65T4XSDM2Q');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CMS Admin Dashboard</title>
@@ -110,17 +118,27 @@ $user = $result->fetch_assoc();
 
     <div class="flex-item-main">
       <p><a href="pengumuman/dashboard_pengumuman.php">
-        <img src="../icon/button/announcement.png" width="100"></a><br>PENGUMUMAN</p>
+        <img src="../icon/button/announcement.png"></a><br>PENGUMUMAN</p>
     </div>
 
     <div class="flex-item-main">
       <p><a href="berita/admin_news.php">
-        <img src="../icon/button/news.png" width="100"></a><br>BERITA</p>
+        <img src="../icon/button/news.png"></a><br>BERITA</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="blog/admin_blog.php">
+        <img src="../icon/button/blog.png"></a><br>BLOG</p>
     </div>
 
     <div class="flex-item-main">
       <p><a href="infoGrafis/admin_infoGrafis.php">
-        <img src="../icon/button/graphics.png" width="100"></a><br>INFOGRAFIS</p>
+        <img src="../icon/button/graphics.png"></a><br>INFOGRAFIS</p>
+    </div>
+
+    <div class="flex-item-main">
+      <p><a href="infoGrafis/admin_infoGrafis.php">
+        <img src="../icon/button/transparansi.png"></a><br>TRANSPARANSI</p>
     </div>
       
     <!--<div class="top-bar">

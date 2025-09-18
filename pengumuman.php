@@ -112,7 +112,7 @@ $result = $conn->query("SELECT * FROM announcements ORDER BY created_at DESC");
             <p><?= nl2br(htmlspecialchars($row['content'])) ?></p>
 
             <?php if ($row['attachment']): ?>
-				<iframe src="cms/pengumuman/uploads/files/<?= $row['attachment'] ?>" width="90%" height="400px"></iframe><br>
+				<iframe src="cms/pengumuman/uploads/files/<?= $row['attachment'] ?>" width="100%" height="400px"></iframe><br>
               <br><a class="download" style="float: left;" href="cms/pengumuman/uploads/files/<?= $row['attachment'] ?>" download>📄 Unduh lampiran</a>
             <?php endif; ?>
 

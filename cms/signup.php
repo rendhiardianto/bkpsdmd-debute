@@ -164,7 +164,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->addAddress($email, $fullname);
 
                // $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
-                $verifyLink = $baseUrl . "verify.php?token=" . urlencode($token);
+                $verifyLink = $baseUrl . "/verify.php?token=" . urlencode($token);
                 $mail->isHTML(true);
                 $mail->Subject = "Verifkasi email Anda";
                 // 🔹 Build the button as styled <a> tag
@@ -201,6 +201,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-65T4XSDM2Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-65T4XSDM2Q');
+    </script>
   <title>Daftar Akun CMS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="signup.css" rel="stylesheet">
