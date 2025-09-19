@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $judul = $conn->real_escape_string($_POST['judul']);
     $nomor = $conn->real_escape_string($_POST['nomor']);
     $tahun = $conn->real_escape_string($_POST['tahun']);
-    $created_by = $_SESSION['fullname'];
+    $created_by = $_SESSION['fullname'];  
 
     // === Upload Attachment (keep original name) ===
     $attachment = null;
@@ -195,26 +195,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Modal for Edit -->
     <div id="editModal" style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.5);">
       <div style="background:#fff; padding:20px; width:400px; margin:100px auto; border-radius:12px; position:relative;">
-        <h3>Edit Announcement</h3>
+        <h3>Edit Dokumen</h3>
         <form id="editForm" enctype="multipart/form-data">
+
           <input type="hidden" name="id" id="edit_id">
 
-          <input type="text" name="title" id="edit_title" placeholder="Judul Pengumuman" required>
-          <textarea name="content" id="edit_content" placeholder="Konten" rows="5" required></textarea>
+          <label>Tipe Dokumen</label>
+                <select name="tipe_dokumen">
+                    <option value="Peraturan Bupati">Peraturan Bupati</option>
+                    <option value="Rencana Strategis">Rencana Strategis</option>
+                    <option value="Rencana Kerja">Rencana Kerja</option>
+                    <option value="Indikator Kinerja Utama">Indikator Kinerja Utama</option>
+                    <option value="Casscading">Casscading</option>
+                    <option value="Perjanjian Kinerja">Perjanjian Kinerja</option>
+                    <option value="Rencana Aksi">Rencana Aksi</option>
+                    <option value="Laporan Kinerja">Laporan Kinerja</option>
+                    <option value="Standar Operasional Prosedur">Standar Operasional Prosedur</option>
+                    <option value="RAPBD">RAPBD</option>
+                    <option value="APBD">APBD</option>
+                    <option value="LPPD">LPPD</option>
+                </select>
 
-          <label>Thumbnail Baru (opsional)</label>
-          <input type="file" name="thumbnail" accept="image/*">
-
-          <label>File Lampiran Baru (opsional)</label>
-          <input type="file" name="attachment" accept=".pdf,.doc,.docx,.xls,.xlsx">
-          <br><br>
-
-          <button type="submit">💾 Save</button>
+          <label>Ubah Judul Dokumen</label>
+          <input type="text" name="judul" placeholder="Judul Dokumen">
+          
+          <label>Ubah Nomor Dokumen</label>
+          <input type="text" name="nomor" placeholder="Nomor Dokumen">
+          
+          <label>Ubah Tahun Dokumen</label>
+          <input type="text" name="tahun" placeholder="Tahun Dokumen" >
+          
+          <label>File Dokumen Baru (.pdf)</label>
+          <input type="file" name="attachment" accept=".pdf">
+          <br>
+          <button type="submit">💾 Simpan</button>
           <button type="button" onclick="$('#editModal').hide()">❌ Cancel</button>
         </form>
       </div>
     </div>
-
 
 </div><!-- CONTENT CLOSE-->
 
@@ -224,7 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 
-<script>
+<!--<script>
   function loadPublicAnnouncements(page=1) {
     let search = $("#search").val();
     let filter = $("#filter").val();
@@ -243,7 +261,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   });
 
   $(document).ready(function(){ loadPublicAnnouncements(); });
-</script>
+</script>-->
 
 <script>
 $(document).ready(function(){
@@ -251,12 +269,16 @@ $(document).ready(function(){
   $(".edit").click(function(){
     let row = $(this).closest("tr");
     let id = row.data("id");
-    let title = row.find(".title").text();
-    let content = row.find(".content").text();
+    let tipe_dokumen = row.find(".tipe_dokumen").text();
+    let judul = row.find(".judul").text();
+    let nomor = row.find(".nomor").text();
+    let tahun = row.find(".tahun").text();
 
     $("#edit_id").val(id);
-    $("#edit_title").val(title);
-    $("#edit_content").val(content);
+    $("#edit_tipe_dokumen").val(tipe_dokumen);
+    $("#edit_judul").val(judul);
+    $("#edit_nomor").val(nomor);
+    $("#edit_tahun").val(tahun);
     $("#editModal").show();
   });
 
@@ -266,7 +288,7 @@ $(document).ready(function(){
     let formData = new FormData(this);
 
     $.ajax({
-      url: "ajax_edit_announcement.php",
+      url: "ajax_edit_transparansi.php",
       type: "POST",
       data: formData,
       processData: false,
@@ -280,12 +302,12 @@ $(document).ready(function(){
 
 
 
-  // Delete Announcement
+  // Delete Dokumen
   $(".delete").click(function(){
-    if (!confirm("Are you sure you want to delete this announcement?")) return;
+    if (!confirm("Apakah Anda yakin ingin menghapus dokumen ini?")) return;
     let id = $(this).closest("tr").data("id");
 
-    $.post("ajax_delete_announcement.php", { id: id }, function(response){
+    $.post("ajax_delete_transparansi.php", { id: id }, function(response){
       alert(response);
       location.reload();
     });
