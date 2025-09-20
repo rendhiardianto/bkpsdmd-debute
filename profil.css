@@ -241,6 +241,44 @@ body {
 	  font-size: 40px;
 	}
 }
+
+/* ============================================ MALUMAT PELAYANAN ==============================*/
+.maklumat {
+	background-color: rgb(230, 230, 230);
+	/*background-image: url(images//index_pict/1.jpg);
+	background-size: cover;*/
+	padding-bottom: 40px;
+	overflow: hidden;
+	text-align: center;
+}
+.maklumat h2{
+	font-family: FreeHand;
+	font-size: 50px;
+	color: #0077b6;
+}
+.maklumat h2 p{
+	font-family: Bahnschrift;
+	font-size: 20px;
+	text-align: center;
+	color: #0077b6;
+	margin-top: 0px;
+}
+.maklumat p {
+	font-size: 20px;
+	padding-left: 30px;
+	padding-right: 30px;
+	text-align: left;
+	font-family: SegoeUI;
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 600px) {
+  .maklumat p {
+	  font-size: 15px;
+	  padding: 5px;
+	}
+}
+
 /* ============================================ TUPOKSI ==============================*/
 .tuPoksi {
 	background-color: beige;

@@ -52,6 +52,7 @@ $result = $stmt->get_result();
 			<a href="../profil.html#selaPang">Selayang Pandang</a>
 			<a href="../profil.html#sejarah">Sejarah</a>
 			<a href="../profil.html#strukOrga">Struktur Organisasi</a>
+			<a href="../profil.html#maklumat">Maklumat Pelayanan</a>
 			<a href="../profil.html#tuPoksi">Tugas Pokok dan Fungsi</a>
 		  </div>
 		</div>
