@@ -9,6 +9,8 @@ include "db.php";
 include "auth.php";
 
 requireRole('admin');
+$role = 'admin';
+
 ?>
 
 <?php
@@ -106,37 +108,38 @@ $user = $result->fetch_assoc();
   <div class="rightSide">
 
     <div class="flex-item-main">
-      <p><a href="cms_admin_authority/add_user.php">
-        <img src="../icon/button/add_user.png"></a><br>ADD USER</p>
+      <p><a href="cms_admin_authority/add_user.php?role=<?php echo urlencode($role); ?>">
+      <img src="../icon/button/add_user.png" alt="Add User"> </a><br>ADD USER</p>
     </div>
 
+
     <div class="flex-item-main">
-      <p><a href="cms_admin_authority/dashboard_admin_list.php">
+      <p><a href="cms_admin_authority/dashboard_admin_list.php?role=<?php echo urlencode($role); ?>">
         <img src="../icon/button/profil.png" ></a><br>CMS USER</p>
     </div>
 
     <div class="flex-item-main">
-      <p><a href="pengumuman/dashboard_pengumuman.php">
+      <p><a href="pengumuman/dashboard_pengumuman.php?role=<?php echo urlencode($role); ?>">
         <img src="../icon/button/announcement.png" ></a><br>PENGUMUMAN</p>
     </div>
 
     <div class="flex-item-main">
-      <p><a href="berita/admin_news.php">
+      <p><a href="berita/admin_news.php?role=<?php echo urlencode($role); ?>">
         <img src="../icon/button/news.png" ></a><br>BERITA</p>
     </div>
 
     <div class="flex-item-main">
-      <p><a href="blog/admin_blog.php">
+      <p><a href="blog/admin_blog.php?role=<?php echo urlencode($role); ?>">
         <img src="../icon/button/blog.png" ></a><br>BLOG</p>
     </div>
 
     <div class="flex-item-main">
-      <p><a href="infoGrafis/admin_infoGrafis.php">
+      <p><a href="infoGrafis/admin_infoGrafis.php?role=<?php echo urlencode($role); ?>">
         <img src="../icon/button/graphics.png" ></a><br>INFOGRAFIS</p>
     </div>
 
     <div class="flex-item-main">
-      <p><a href="transparansi/dashboard_transparansi.php">
+      <p><a href="transparansi/dashboard_transparansi.php?role=<?php echo urlencode($role); ?>">
         <img src="../icon/button/transparansi.png"></a><br>TRANSPARANSI</p>
     </div>
 

@@ -3,6 +3,18 @@ include "../db.php";
 include "../auth.php";
 
 requireRole(['admin', 'user']);
+// Read role (GET first, session fallback)
+$role = $_GET['role'] ?? $_SESSION['role'];
+
+// Read “from” page if provided
+$fromPage = $_GET['from'] ?? null;
+
+// Define back links for each role
+$backLinks = [
+    'admin'  => '../dashboard_super_admin.php',
+    'user'   => '../dashboard_cms_admin.php',
+];
+$backUrl = $backLinks[$role];
 
 // Handle delete action
 if (isset($_GET['delete'])) {
@@ -120,7 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <body>
   <div class="header">
             <div class="navbar">
-            	<button onclick="window.history.back()" class="buttonBack">&#10094; Kembali</button>
+            	<a href="<?php echo htmlspecialchars($backUrl); ?>" class="btn btn-secondary" style="text-decoration: none; color:white;">&#10094; Kembali</a>
             </div>
             <div class="roleHeader">
               <h1>Dashboard Pengumuman</h1>

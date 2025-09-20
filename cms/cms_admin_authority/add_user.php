@@ -1,6 +1,19 @@
 <?php include "../db.php";
 require_once("../auth.php");
 
+// Read role (GET first, session fallback)
+$role = $_GET['role'] ?? $_SESSION['role'];
+
+// Read “from” page if provided
+$fromPage = $_GET['from'] ?? null;
+
+// Define back links for each role
+$backLinks = [
+    'admin'  => '../dashboard_super_admin.php',
+    'user'   => '../dashboard_cms_admin.php',
+];
+$backUrl = $backLinks[$role];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $fullname = $conn->real_escape_string($_POST['fullname']);
     $nip    = $conn->real_escape_string($_POST['nip']);
@@ -60,7 +73,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <div class="header">
     <div class="navbar">
-      <a href="../dashboard_super_admin.php" style="text-decoration: none; color:white;">&#10094; Kembali</a>
+      <a href="<?php echo htmlspecialchars($backUrl); ?>" class="btn btn-secondary" style="text-decoration: none; color:white;">&#10094; Kembali</a>
     </div>
     <div class="roleHeader">
       <h1>Dashboard Add CMS User</h1>

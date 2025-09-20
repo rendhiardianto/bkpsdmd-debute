@@ -163,7 +163,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $mail->setFrom('yourgmail@gmail.com', 'BKPSDMD Kab. Merangin');
                 $mail->addAddress($email, $fullname);
 
-               // $verifyLink = "http://localhost/bkpsdmd-cms/cms/verify.php?token=$token";
+                
                 $verifyLink = $baseUrl . "/verify.php?token=" . urlencode($token);
                 $mail->isHTML(true);
                 $mail->Subject = "Verifkasi email Anda";

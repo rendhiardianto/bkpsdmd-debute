@@ -47,20 +47,18 @@ body {
 {
     float: left;
     margin-left: 10px;
-    
-}
-.buttonBack {
-    display:block;
+
     margin-top:15px;
     text-align:center;
+    cursor: pointer;
+    padding:10px 15px; 
+    color:white; 
+    padding:10px 15px; 
     background:#21be02; 
+    border:none; 
+    border-radius:4px; 
 }
-.navbar a {
-    font-size: 20px;
-	  font-family:Bahnschrift;
-    color: white;
-}
-.buttonBack:hover{
+.navbar:hover{
     background: #199400;
 }
 
